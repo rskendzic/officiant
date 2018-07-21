@@ -1,4 +1,3 @@
-import { Drink } from './../../models/Drink';
 import { createSelector } from '@ngrx/store';
 
 import * as fromFeature from '../reducers';
@@ -6,13 +5,13 @@ import * as fromDrinks from '../reducers/drink.reducer';
 
 
 
-export const getPizzaState = createSelector(
-  fromFeature.getProductsState,
-  (state: fromFeature.ProductsState) => state.drinks
+export const getMenuState = createSelector(
+  fromFeature.getMenuState,
+  (state: fromFeature.MenuState) => state.drinks
 );
 
 export const getDrinksEntities = createSelector(
-  getPizzaState,
+  getMenuState,
   fromDrinks.getDrinksEntities
 );
 

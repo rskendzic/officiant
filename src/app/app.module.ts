@@ -31,7 +31,8 @@ import { DrinkEffects } from './store';
 
     EffectsModule.forRoot([DrinkEffects]),
 
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot({}),
+    StoreModule.forFeature('menu', reducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
