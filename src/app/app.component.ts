@@ -19,6 +19,7 @@ interface AppState {
 export class AppComponent implements OnInit {
 
   drinks$: Observable<Drink[]>;
+  drinksAreLoading$: Observable<boolean>;
 
   getDrinks() {
     this.store.dispatch(new drinkActions.GetDrinks('/drinks'));
@@ -26,6 +27,7 @@ export class AppComponent implements OnInit {
 
   constructor(private store: Store<AppState>) {
     this.drinks$ = this.store.select(fromStore.getAllDrinks);
+    this.drinksAreLoading$ = this.store.select(fromStore.areDrinksLoading);
   }
 
   ngOnInit() {

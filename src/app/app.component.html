@@ -5,4 +5,5 @@
   <mat-card-subtitle>{{ drink.category}}</mat-card-subtitle>
   <mat-card-content>{{ drink.price}}</mat-card-content>
 </mat-card>
+<mat-spinner *ngIf="drinksAreLoading$ | async"></mat-spinner>
 <router-outlet></router-outlet>

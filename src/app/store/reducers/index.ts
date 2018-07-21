@@ -10,4 +10,4 @@ export const reducers: ActionReducerMap<MenuState> = {
   drinks: fromDrinks.drinkReducer,
 };
 
-export const getMenuState = createFeatureSelector<MenuState>('menu');
+export const getMenuFeatureState = createFeatureSelector<MenuState>('menu');
