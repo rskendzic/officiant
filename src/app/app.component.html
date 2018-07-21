@@ -1,9 +1,60 @@
-<mat-card
-  *ngFor="let drink of drinks$ | async"
-  class="drink-card__wrapper">
-  <mat-card-title>{{ drink.name}}</mat-card-title>
-  <mat-card-subtitle>{{ drink.category}}</mat-card-subtitle>
-  <mat-card-content>{{ drink.price}}</mat-card-content>
-</mat-card>
-<mat-spinner *ngIf="drinksAreLoading$ | async"></mat-spinner>
+<div fxLayout="column" fxLayoutAlign="space-around start" fxLayoutGap = "10px">
+  <mat-toolbar>Officiant</mat-toolbar>
+  <div fxLayout="row wrap">
+    <mat-card
+      *ngFor="let drink of drinks$ | async"
+      class="drink-card__wrapper">
+      <mat-card-title>{{ drink.name}}</mat-card-title>
+      <mat-card-subtitle>{{ drink.category}}</mat-card-subtitle>
+      <mat-card-content>{{ drink.price}}</mat-card-content>
+    </mat-card>
+    <mat-spinner *ngIf="drinksAreLoading$ | async"></mat-spinner>
+  </div>
+
+  <mat-card  class="form-wrapper">
+    <mat-card-title>Create New Drink</mat-card-title>
+    <mat-card-content
+      fxLayout="column"
+      fxLayoutAlign="space-around start"
+      fxLayoutGap = "10px">
+
+      <form [formGroup]="drinksForm" (ngSubmit)="onSubmit(drinksForm.value)">
+        <mat-form-field fxFlexFill>
+          <input
+            matInput
+            placeholder="Name"
+            type="text"
+            formControlName="name"
+            />
+            <mat-error *ngIf="drinksForm.get('name').invalid">Name is required</mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlexFill>
+          <input
+            matInput
+            placeholder="Category"
+            type="text"
+            formControlName="category"
+          />
+          <mat-error *ngIf="drinksForm.get('category').invalid">Category is required</mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlexFill>
+          <input
+            matInput placeholder="Price"
+            type="number"
+            formControlName="price"
+          />
+            <mat-error *ngIf="drinksForm.get('price').invalid">Price is required</mat-error>
+        </mat-form-field>
+        <button
+        mat-raised-button
+        color="primary"
+        [disabled]="drinksForm.invalid">
+          Create
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+</div>
+
 <router-outlet></router-outlet>

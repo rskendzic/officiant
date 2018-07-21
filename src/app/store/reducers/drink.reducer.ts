@@ -1,3 +1,4 @@
+import { CREATE_DRINK } from './../actions/drink.actions';
 import { Drink } from './../../models/Drink';
 import * as DrinkActions from '../actions/drink.actions';
 
@@ -47,6 +48,19 @@ export function drinkReducer(state = initialState, action: Action) {
 
     case DrinkActions.GET_DRINKS_FAIL:
       return { ...state, ...action.payload, loading: false, error: true };
+
+    case DrinkActions.CREATE_DRINK_SUCCESS: {
+      const drink = action.payload;
+      const drinkEntities = {
+        ...state.entities,
+        [drink.id]: drink,
+      };
+
+      return {
+        ...state,
+        entities: drinkEntities,
+      };
+    }
 
     default:
       return state;
