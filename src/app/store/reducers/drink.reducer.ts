@@ -56,7 +56,7 @@ export function drinkReducer(state = initialState, action: Action) {
       const index = Object.keys(state.entities).length;
       const drinkEntities = {
         ...state.entities,
-        [index]: drink,
+        [index]: {...drink, index},
       };
 
       return {
