@@ -22,16 +22,17 @@ export function drinkReducer(state = initialState, action: Action) {
   switch (action.type) {
 
     case DrinkActions.GET_DRINKS:
+    case DrinkActions.CREATE_DRINK:
       return { ...state, loading: true };
 
     case DrinkActions.GET_DRINKS_SUCCESS:
       const drinks = action.payload;
 
       const entities = drinks.reduce(
-        (drinkEntities: { [id: number]: Drink }, drink: Drink) => {
+        (drinkEntities: { [index: string]: Drink }, drink: Drink) => {
           return {
             ...drinkEntities,
-            [drink.id]: drink,
+            [drink.index]: drink,
           };
         },
         {
@@ -51,14 +52,16 @@ export function drinkReducer(state = initialState, action: Action) {
 
     case DrinkActions.CREATE_DRINK_SUCCESS: {
       const drink = action.payload;
+      const index = Object.keys(state.entities).length;
       const drinkEntities = {
         ...state.entities,
-        [drink.id]: drink,
+        [index]: drink,
       };
 
       return {
         ...state,
         entities: drinkEntities,
+        loading: false
       };
     }
 
