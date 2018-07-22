@@ -7,6 +7,15 @@
       <mat-card-title>{{ drink.name}}</mat-card-title>
       <mat-card-subtitle>{{ drink.category}}</mat-card-subtitle>
       <mat-card-content>{{ drink.price}}</mat-card-content>
+      <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
+        <span fxFlexFill></span>
+        <button mat-raised-button color="primary" (click)="updateDrink(drink)" >
+          Update
+        </button>
+        <button mat-raised-button color="warn" (click)="deleteDrink(drink)">
+          Delete
+        </button>
+      </mat-card-actions>
     </mat-card>
     <mat-spinner *ngIf="drinksAreLoading$ | async"></mat-spinner>
   </div>

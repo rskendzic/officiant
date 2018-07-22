@@ -46,6 +46,14 @@ export class AppComponent implements OnInit {
     this.store.dispatch(new drinkActions.CreateDrink(formValue));
   }
 
+  updateDrink(drink: Drink) {
+    console.log(drink)
+  }
+
+  deleteDrink(drink: Drink) {
+    this.store.dispatch(new drinkActions.DeleteDrink(drink.id));
+  }
+
 
   ngOnInit() {
     this.getDrinks();

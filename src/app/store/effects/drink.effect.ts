@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
 
 import { Observable, from } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, exhaustMap, catchError } from 'rxjs/operators';
 
 import * as drinkActions from '../actions/drink.actions';
 import { Drink } from '../../models/Drink';
@@ -40,5 +40,17 @@ export class DrinkEffects {
       const drink: Drink = snapshot.data();
       return new drinkActions.CreateDrinkSuccess(drink);
     })
+    );
+
+  @Effect()
+  deleteDrink: Observable<any> = this.actions.ofType(drinkActions.DELETE_DRINK)
+    .pipe(
+      map((action: drinkActions.DeleteDrink) => action.payload),
+      exhaustMap((drinkId: any) =>
+        this.fromService.deleteDrink(drinkId).pipe(
+          map(() => new drinkActions.DeleteDrinkSuccess(drinkId)),
+          catchError(error => error)
+        )
+      )
     );
 }

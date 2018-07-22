@@ -2,6 +2,7 @@ import { Drink } from './../models/Drink';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { take } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
+import { from } from 'rxjs';
 
 @Injectable()
 export class DrinkService {
@@ -15,6 +16,11 @@ export class DrinkService {
     );
     return drinks;
   }
+
+  deleteDrink(drinkId: string) {
+    return from(this.afs.collection('drinks').doc(drinkId).delete());
+  }
+
 
   createDrink(payload: Drink) {
     const drinkList = this.afs.collection('drinks');
