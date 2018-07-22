@@ -31,7 +31,7 @@ export class DrinkService {
   createDrink(payload: Drink) {
     const drinkList = this.afs.collection('drinks');
     const id = this.afs.createId();
-    drinkList.doc(id).set({ id, ...payload});
+    drinkList.doc(id).set({ ...payload, id });
     return drinkList.doc(id);
   }
 }

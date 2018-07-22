@@ -1,8 +1,19 @@
-.drink-card__wrapper {
-    width: 400px;
-    margin: 10px;
-}
+.main-wrapper {
+  height: 100%;
+  .drink-card__wrapper {
+     width: 400px;
+     margin: 10px;
+ }
 
-.form-wrapper {
-    max-width: 400px;
+ .form-wrapper {
+     max-width: 400px;
+ }
+
+ .fab-button {
+     position: absolute;
+     bottom: 10%;
+     right: 10%;
+     height: 64px;
+     width: 64px;
+ }
 }

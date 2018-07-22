@@ -13,11 +13,12 @@ export class CreateUpdateDialogComponent implements OnInit {
     name: ['', Validators.required],
     category: ['', Validators.required],
     price: ['', Validators.required],
-    index: ['', Validators.required],
-    id: ['', Validators.required],
+    index: [null],
+    id: [null],
   });
 
   title =  'Create Drink';
+  buttonText =  'Create';
 
   constructor(
     public dialogRef: MatDialogRef<CreateUpdateDialogComponent>,
@@ -25,11 +26,11 @@ export class CreateUpdateDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public editDrinkData: Drink) { }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(null);
   }
 
   close(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(null);
   }
 
   saveDrink(drink: Drink): void {
@@ -39,6 +40,7 @@ export class CreateUpdateDialogComponent implements OnInit {
   ngOnInit() {
     if (this.editDrinkData) {
       this.title = 'Edit drink';
+      this.buttonText = 'Update';
       this.drinksForm.setValue(this.editDrinkData);
     }
   }
