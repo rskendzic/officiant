@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  hmr: false,
   firebase: {
     apiKey: 'AIzaSyBrBy42-fcoqwRs1dxA3YnAiKatkIQsdU0',
     authDomain: 'officiant-22320.firebaseapp.com',
