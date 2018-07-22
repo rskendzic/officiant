@@ -1,5 +1,8 @@
 <div fxLayout="column" fxLayoutAlign="space-around start" fxLayoutGap = "10px" class="main-wrapper">
-  <mat-toolbar>Officiant</mat-toolbar>
+  <mat-toolbar color="primary" fxLayout="column" fxLayoutAlign="space-between start">
+  <div class="toolbar-title">Officiant</div>
+  <mat-progress-bar *ngIf="drinksAreLoading$ | async" color="accent" mode="indeterminate"></mat-progress-bar>
+  </mat-toolbar>
   <div fxLayout="row wrap">
     <mat-card
       *ngFor="let drink of drinks$ | async"
@@ -17,7 +20,6 @@
         </button>
       </mat-card-actions>
     </mat-card>
-    <mat-spinner *ngIf="drinksAreLoading$ | async"></mat-spinner>
   </div>
 
   <button

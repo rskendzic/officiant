@@ -8,6 +8,15 @@
  .form-wrapper {
      max-width: 400px;
  }
+  mat-toolbar {
+    padding: 0;
+    .toolbar-title {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      padding: 0 16px;
+    }
+  }
 
  .fab-button {
      position: absolute;
