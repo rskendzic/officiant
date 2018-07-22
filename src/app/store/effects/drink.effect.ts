@@ -1,4 +1,4 @@
-import { DrinkService } from './../../service/drink.service';
+import { DrinkService } from '../../service/drink.service';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
@@ -49,6 +49,18 @@ export class DrinkEffects {
       exhaustMap((drinkId: any) =>
         this.fromService.deleteDrink(drinkId).pipe(
           map(() => new drinkActions.DeleteDrinkSuccess(drinkId)),
+          catchError(error => error)
+        )
+      )
+    );
+
+  @Effect()
+  updateDrink: Observable<any> = this.actions.ofType(drinkActions.UPDATE_DRINK)
+    .pipe(
+      map((action: drinkActions.UpdateDrink) => action.payload),
+      exhaustMap((drink: Drink) =>
+        this.fromService.updateDrink(drink).pipe(
+          map(() => new drinkActions.UpdateDrinkSuccess(drink)),
           catchError(error => error)
         )
       )

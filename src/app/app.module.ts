@@ -1,3 +1,4 @@
+
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -7,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { EffectsModule } from '../../node_modules/@ngrx/effects';
+import { EffectsModule } from '@ngrx/effects';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -15,8 +16,9 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
+import * as fromComponents from './components';
 
-import { reducers } from './store/reducers/';
+import { reducers } from './store/reducers';
 import { environment } from '../environments/environment'; // Angular CLI environemnt
 
 import { DrinkEffects } from './store';
@@ -25,7 +27,11 @@ import { DrinkService } from './service/drink.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ...fromComponents.components
+  ],
+  entryComponents: [
+    ...fromComponents.dialogs
   ],
   imports: [
     BrowserModule,

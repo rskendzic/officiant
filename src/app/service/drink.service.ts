@@ -1,4 +1,4 @@
-import { Drink } from './../models/Drink';
+import { Drink } from '../models/Drink';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { take } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
@@ -19,6 +19,12 @@ export class DrinkService {
 
   deleteDrink(drinkId: string) {
     return from(this.afs.collection('drinks').doc(drinkId).delete());
+  }
+
+  updateDrink(drink: Drink) {
+    return from(this.afs.collection('drinks').doc(drink.id).update({
+      ...drink
+    }));
   }
 
 

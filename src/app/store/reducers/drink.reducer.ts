@@ -1,5 +1,4 @@
-import { CREATE_DRINK, DELETE_DRINK_SUCCESS } from './../actions/drink.actions';
-import { Drink } from './../../models/Drink';
+import { Drink } from '../../models/Drink';
 import * as DrinkActions from '../actions/drink.actions';
 
 export type Action = DrinkActions.Actions;
@@ -24,6 +23,7 @@ export function drinkReducer(state = initialState, action: Action) {
     case DrinkActions.GET_DRINKS:
     case DrinkActions.CREATE_DRINK:
     case DrinkActions.DELETE_DRINK:
+    case DrinkActions.UPDATE_DRINK:
       return { ...state, loading: true };
 
     case DrinkActions.GET_DRINKS_SUCCESS:
@@ -64,6 +64,20 @@ export function drinkReducer(state = initialState, action: Action) {
         entities: drinkEntities,
         loading: false
       };
+    }
+
+    case DrinkActions.UPDATE_DRINK_SUCCESS: {
+        const drink = action.payload;
+        const entities = {
+          ...state.entities,
+          [drink.index]: drink,
+        };
+
+        return {
+          ...state,
+          entities,
+          loading: false
+        };
     }
 
     case DrinkActions.DELETE_DRINK_SUCCESS: {

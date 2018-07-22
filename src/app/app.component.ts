@@ -8,8 +8,9 @@ import { Observable } from 'rxjs';
 
 import * as drinkActions from './store/actions/drink.actions';
 import * as fromStore from './store';
-import { switchMap } from '../../node_modules/rxjs/operators';
 
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { CreateUpdateDialogComponent } from './components';
 
 interface AppState {
   message: string;
@@ -33,7 +34,10 @@ export class AppComponent implements OnInit {
     price: ['', Validators.required]
   });
 
-  constructor(private store: Store<AppState>, private fb: FormBuilder, private db: AngularFireDatabase, ) {
+  constructor(
+    private store: Store<AppState>,
+    private fb: FormBuilder,
+    private dialog: MatDialog) {
     this.drinks$ = this.store.select(fromStore.getAllDrinks);
     this.drinksAreLoading$ = this.store.select(fromStore.areDrinksLoading);
   }
@@ -47,7 +51,13 @@ export class AppComponent implements OnInit {
   }
 
   updateDrink(drink: Drink) {
-    console.log(drink)
+    const dialogRef = this.dialog.open(CreateUpdateDialogComponent, {
+      data: drink
+    });
+
+    dialogRef.afterClosed().subscribe(updatedDrink => {
+      this.store.dispatch(new drinkActions.UpdateDrink(updatedDrink))
+    });
   }
 
   deleteDrink(drink: Drink) {

@@ -11,6 +11,10 @@ export const CREATE_DRINK_SUCCESS = '[DRINKS] Create Drink success';
 export const DELETE_DRINK = '[DRINKS] DELETE Drink';
 export const DELETE_DRINK_SUCCESS = '[DRINKS] DELETE Drink success';
 
+export const UPDATE_DRINK = '[DRINKS] UPDATE Drink';
+export const UPDATE_DRINK_SUCCESS = '[DRINKS] UPDATE Drink success';
+
+
 export const VOTE_UPDATE = 'Post Vote';
 export const VOTE_SUCCESS = 'Post Vote success';
 export const VOTE_FAIL = 'Post Vote fail';
@@ -51,12 +55,24 @@ export class DeleteDrinkSuccess implements Action {
   constructor(public payload: string) { }
 }
 
+export class UpdateDrink implements Action {
+  readonly type = UPDATE_DRINK;
+  constructor(public payload: Drink) { }
+}
+
+export class UpdateDrinkSuccess implements Action {
+  readonly type = UPDATE_DRINK_SUCCESS;
+  constructor(public payload: Drink) { }
+}
+
 export type Actions
   = GetDrinks
   | GetDrinksSuccess
   | GetDrinksFail
   | CreateDrink
   | CreateDrinkSuccess
+  | UpdateDrink
+  | UpdateDrinkSuccess
   | DeleteDrink
   | DeleteDrinkSuccess;
 

@@ -1,0 +1,41 @@
+<h2 mat-dialog-title>{{title}}</h2>
+
+<mat-dialog-content [formGroup]="drinksForm">
+        <mat-form-field fxFlexFill>
+          <input
+            matInput
+            placeholder="Name"
+            type="text"
+            formControlName="name"
+            />
+            <mat-error *ngIf="drinksForm.get('name').invalid">Name is required</mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlexFill>
+          <input
+            matInput
+            placeholder="Category"
+            type="text"
+            formControlName="category"
+          />
+          <mat-error *ngIf="drinksForm.get('category').invalid">Category is required</mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlexFill>
+          <input
+            matInput placeholder="Price"
+            type="number"
+            formControlName="price"
+          />
+            <mat-error *ngIf="drinksForm.get('price').invalid">Price is required</mat-error>
+        </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button class="mat-raised-button" (click)="close()">Close</button>
+    <button
+      mat-raised-button
+      (click)="saveDrink(drinksForm.value)"
+      color="primary"
+      [disabled]="drinksForm.invalid">
+      Update
+    </button>
+</mat-dialog-actions>
