@@ -22,7 +22,7 @@ export class DrinkService {
   }
 
   updateDrink(drink: Drink) {
-    return from(this.afs.collection('drinks').doc(drink.id).update({
+    return from(this.afs.collection('drinks').doc(drink.key).update({
       ...drink
     }));
   }
@@ -30,8 +30,8 @@ export class DrinkService {
 
   createDrink(payload: Drink) {
     const drinkList = this.afs.collection('drinks');
-    const id = this.afs.createId();
-    drinkList.doc(id).set({ ...payload, id });
-    return drinkList.doc(id);
+    const key = this.afs.createId();
+    drinkList.doc(key).set({ ...payload, key });
+    return from(drinkList.doc(key).ref.get());
   }
 }

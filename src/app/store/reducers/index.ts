@@ -7,7 +7,7 @@ export interface MenuState {
 }
 
 export const reducers: ActionReducerMap<MenuState> = {
-  drinks: fromDrinks.drinkReducer,
+  drinks: fromDrinks.drinkReducer
 };
 
 export const getMenuFeatureState = createFeatureSelector<MenuState>('menu');

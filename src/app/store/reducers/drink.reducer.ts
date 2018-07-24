@@ -1,95 +1,50 @@
 import { Drink } from '../../models/Drink';
-import * as DrinkActions from '../actions/drink.actions';
+import { DrinkActionsTypes, DrinkActionsUnion } from '../actions/drink.actions';
+import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
-export type Action = DrinkActions.Actions;
+export const adapter: EntityAdapter<Drink> = createEntityAdapter<Drink>({
+    selectId: (entity: Drink) => entity.id,
+    sortComparer: false
+  });
 
-export interface DrinksState {
-  entities: { [id: number]: Drink };
+export interface DrinksState extends EntityState<Drink> {
   loaded: boolean;
   loading: boolean;
 }
 
-export const initialState: DrinksState = {
-  entities: {},
+export const initialState: DrinksState = adapter.getInitialState({
   loaded: false,
   loading: false,
-};
+});
 
 /// Reducer function
-export function drinkReducer(state = initialState, action: Action) {
+export function drinkReducer(state = initialState, action: DrinkActionsUnion) {
 
   switch (action.type) {
 
-    case DrinkActions.GET_DRINKS:
-    case DrinkActions.CREATE_DRINK:
-    case DrinkActions.DELETE_DRINK:
-    case DrinkActions.UPDATE_DRINK:
+    case DrinkActionsTypes.GET_DRINKS:
+    case DrinkActionsTypes.CREATE_DRINK:
+    case DrinkActionsTypes.DELETE_DRINK:
+    case DrinkActionsTypes.UPDATE_DRINK:
       return { ...state, loading: true };
 
-    case DrinkActions.GET_DRINKS_SUCCESS:
-      const drinks = action.payload;
+    case DrinkActionsTypes.GET_DRINKS_SUCCESS:
+      return adapter.addAll(action.payload, {...state, loading: false, loaded: true});
 
-      const entities = drinks.reduce(
-        (drinkEntities: { [index: string]: Drink }, drink: Drink) => {
-          return {
-            ...drinkEntities,
-            [drink.index]: drink,
-          };
-        },
-        {
-          ...state.entities,
-        }
-      );
-
-      return {
-        ...state,
-        loading: false,
-        loaded: true,
-        entities
-      };
-
-    case DrinkActions.GET_DRINKS_FAIL:
+    case DrinkActionsTypes.GET_DRINKS_FAIL:
       return { ...state, ...action.payload, loading: false, error: true };
 
-    case DrinkActions.CREATE_DRINK_SUCCESS: {
-      const drink = action.payload;
-      const index = Object.keys(state.entities).length;
-      const drinkEntities = {
-        ...state.entities,
-        [index]: {...drink, index},
-      };
-
-      return {
-        ...state,
-        entities: drinkEntities,
-        loading: false
-      };
+    case DrinkActionsTypes.CREATE_DRINK_SUCCESS: {
+      const id = Object.keys(state.entities).length;
+      return adapter.addOne({...action.payload, id}, { ...state, loading: false });
     }
 
-    case DrinkActions.UPDATE_DRINK_SUCCESS: {
-        const drink = action.payload;
-        const entities = {
-          ...state.entities,
-          [drink.index]: drink,
-        };
-
-        return {
-          ...state,
-          entities,
-          loading: false
-        };
+    case DrinkActionsTypes.UPDATE_DRINK_SUCCESS: {
+      return adapter.upsertOne(action.payload, { ...state, loading: false });
     }
 
-    case DrinkActions.DELETE_DRINK_SUCCESS: {
-      const deletedDrinkId = action.payload;
-      const [{index}] = Object.values(state.entities).filter(drink => drink.id === deletedDrinkId);
-      const { [index]: removed, ...entities } = state.entities;
-
-      return {
-        ...state,
-        entities,
-        loading: false
-      };
+    case DrinkActionsTypes.DELETE_DRINK_SUCCESS: {
+      return adapter.removeOne(action.payload.id, { ...state, loading: false});
     }
 
     default:
@@ -97,6 +52,10 @@ export function drinkReducer(state = initialState, action: Action) {
 
   }
 }
+
+// get the selectors - this is possible but i don't see the benefit.
+const { selectIds, selectEntities, selectAll, selectTotal,  } = adapter.getSelectors();
+
 export const getDrinksEntities = (state: DrinksState) => state.entities;
 export const getDrinksLoading = (state: DrinksState) => state.loading;
 export const getDrinksLoaded = (state: DrinksState) => state.loaded;

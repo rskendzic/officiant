@@ -13,7 +13,7 @@ export class CreateUpdateDialogComponent implements OnInit {
     name: ['', Validators.required],
     category: ['', Validators.required],
     price: ['', Validators.required],
-    index: [null],
+    key: [null],
     id: [null],
   });
 

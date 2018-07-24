@@ -30,8 +30,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private store: Store<AppState>,
-    private fb: FormBuilder,
     private dialog: MatDialog) {
+
     this.drinks$ = this.store.select(fromStore.getAllDrinks);
     this.drinksAreLoading$ = this.store.select(fromStore.areDrinksLoading);
   }
@@ -66,7 +66,7 @@ export class AppComponent implements OnInit {
   }
 
   deleteDrink(drink: Drink) {
-    this.store.dispatch(new drinkActions.DeleteDrink(drink.id));
+    this.store.dispatch(new drinkActions.DeleteDrink(drink));
   }
 
 

@@ -4,65 +4,64 @@ import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
 
 import { Observable, from } from 'rxjs';
-import { map, switchMap, exhaustMap, catchError } from 'rxjs/operators';
+import { map, switchMap, exhaustMap, catchError, concatMap } from 'rxjs/operators';
 
-import * as drinkActions from '../actions/drink.actions';
+import { DrinkActionsTypes, DrinkActionsUnion } from '../actions/drink.actions';
+import * as fromDrinkActions from '../actions/drink.actions';
 import { Drink } from '../../models/Drink';
-export type Action = drinkActions.Actions;
 
 
 @Injectable()
 export class DrinkEffects {
 
-  constructor(private actions: Actions, private db: AngularFirestore, private fromService: DrinkService) { }
+  constructor(private actions: Actions, private fromService: DrinkService) { }
 
   @Effect()
-  getDrinks: Observable<Action> = this.actions.ofType(drinkActions.GET_DRINKS)
-  .pipe(
-    map((action: drinkActions.GetDrinks) => action.payload),
-    switchMap(payload => this.fromService.getDrinks(payload)),
-    map((drinks: any) => {
-      drinks = drinks.map((drink, index) => {
-        drink.index = index;
-        return drink;
-      });
-      return new drinkActions.GetDrinksSuccess(drinks);
-    })
-  );
-
-  @Effect()
-  createDrink: Observable<any> = this.actions.ofType(drinkActions.CREATE_DRINK)
-  .pipe(
-    map((action: drinkActions.CreateDrink) => action.payload),
-    map((drink) => this.fromService.createDrink(drink)),
-    switchMap((drinkDocument: AngularFirestoreDocument) => from(drinkDocument.ref.get())),
-    map((snapshot: any) =>  {
-      const drink: Drink = snapshot.data();
-      return new drinkActions.CreateDrinkSuccess(drink);
-    })
+  getDrinks: Observable<DrinkActionsUnion> = this.actions.ofType(DrinkActionsTypes.GET_DRINKS)
+    .pipe(
+      map((action: fromDrinkActions.GetDrinks) => action.payload),
+      switchMap(payload => this.fromService.getDrinks(payload)),
+      map((drinks: Drink[]) => {
+        drinks = drinks.map((drink, id) => {
+          drink.id = id;
+          return drink;
+        });
+        return new fromDrinkActions.GetDrinksSuccess(drinks);
+      })
     );
 
   @Effect()
-  deleteDrink: Observable<any> = this.actions.ofType(drinkActions.DELETE_DRINK)
+  createDrink: Observable<DrinkActionsUnion> = this.actions.ofType(DrinkActionsTypes.CREATE_DRINK)
     .pipe(
-      map((action: drinkActions.DeleteDrink) => action.payload),
-      exhaustMap((drinkId: any) =>
-        this.fromService.deleteDrink(drinkId).pipe(
-          map(() => new drinkActions.DeleteDrinkSuccess(drinkId)),
-          catchError(error => error)
+      map((action: fromDrinkActions.CreateDrink) => action.payload),
+      concatMap((drink) => this.fromService.createDrink(drink)
+        .pipe(
+          map((snapshot: any) => new fromDrinkActions.CreateDrinkSuccess(snapshot.data()))
         )
       )
     );
 
   @Effect()
-  updateDrink: Observable<any> = this.actions.ofType(drinkActions.UPDATE_DRINK)
+  deleteDrink: Observable<DrinkActionsUnion> = this.actions.ofType(DrinkActionsTypes.DELETE_DRINK)
     .pipe(
-      map((action: drinkActions.UpdateDrink) => action.payload),
-      exhaustMap((drink: Drink) =>
-        this.fromService.updateDrink(drink).pipe(
-          map(() => new drinkActions.UpdateDrinkSuccess(drink)),
-          catchError(error => error)
+      map((action: fromDrinkActions.DeleteDrink) => action.payload),
+      exhaustMap((drink: Drink) => this.fromService.deleteDrink(drink.key)
+        .pipe(
+          map(() => new fromDrinkActions.DeleteDrinkSuccess(drink))
         )
+      )
+    );
+
+  @Effect()
+  updateDrink: Observable<any> = this.actions.ofType(DrinkActionsTypes.UPDATE_DRINK)
+    .pipe(
+      map((action: fromDrinkActions.UpdateDrink) => action.payload),
+      concatMap((drink: Drink) =>
+        this.fromService.updateDrink(drink)
+          .pipe(
+            map(() => new fromDrinkActions.UpdateDrinkSuccess(drink)),
+            catchError(error => error)
+          )
       )
     );
 }
