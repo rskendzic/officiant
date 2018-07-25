@@ -2,17 +2,17 @@ import { Drink } from '../../models/Drink';
 import { Action } from '@ngrx/store';
 
 export enum DrinkActionsTypes {
-  GET_DRINKS = '[DRINKS] Get all drinks',
+  GET_DRINKS = '[FIREBASE] Get all drinks',
   GET_DRINKS_SUCCESS = '[DRINKS] Get success',
   GET_DRINKS_FAIL = '[DRINKS] Get failed',
 
-  CREATE_DRINK = '[DRINKS] Create Drink',
+  CREATE_DRINK = '[FIREBASE] Create Drink',
   CREATE_DRINK_SUCCESS = '[DRINKS] Create Drink success',
 
-  DELETE_DRINK = '[DRINKS] DELETE Drink',
+  DELETE_DRINK = '[FIREBASE] DELETE Drink',
   DELETE_DRINK_SUCCESS = '[DRINKS] DELETE Drink success',
 
-  UPDATE_DRINK = '[DRINKS] UPDATE Drink',
+  UPDATE_DRINK = '[FIREBASE] UPDATE Drink',
   UPDATE_DRINK_SUCCESS = '[DRINKS] UPDATE Drink success'
 }
 

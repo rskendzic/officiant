@@ -13,7 +13,7 @@ export interface DrinksState extends EntityState<Drink> {
 }
 
 export const initialState: DrinksState = adapter.getInitialState({
-  loaded: false,
+  loaded: false, // if entities are not loading, and they are not loaded -> it's an error
   loading: false,
 });
 
@@ -26,25 +26,25 @@ export function drinkReducer(state = initialState, action: DrinkActionsUnion) {
     case DrinkActionsTypes.CREATE_DRINK:
     case DrinkActionsTypes.DELETE_DRINK:
     case DrinkActionsTypes.UPDATE_DRINK:
-      return { ...state, loading: true };
+      return { ...state, loading: true, loaded: true };
 
     case DrinkActionsTypes.GET_DRINKS_SUCCESS:
       return adapter.addAll(action.payload, {...state, loading: false, loaded: true});
 
     case DrinkActionsTypes.GET_DRINKS_FAIL:
-      return { ...state, ...action.payload, loading: false, error: true };
+      return { ...state, ...action.payload, loading: false, loaded: false };
 
     case DrinkActionsTypes.CREATE_DRINK_SUCCESS: {
       const id = Object.keys(state.entities).length;
-      return adapter.addOne({...action.payload, id}, { ...state, loading: false });
+      return adapter.addOne({...action.payload, id}, { ...state, loading: false, loaded: true});
     }
 
     case DrinkActionsTypes.UPDATE_DRINK_SUCCESS: {
-      return adapter.upsertOne(action.payload, { ...state, loading: false });
+      return adapter.upsertOne(action.payload, { ...state, loading: false, loaded: true});
     }
 
     case DrinkActionsTypes.DELETE_DRINK_SUCCESS: {
-      return adapter.removeOne(action.payload.id, { ...state, loading: false});
+      return adapter.removeOne(action.payload.id, { ...state, loading: false, loaded: true});
     }
 
     default:
