@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="dialogTitle" datatype="html">
+        <source>{VAR_DRINK, drink, CREATE_DRINK {Create drink} EDIT_DRINK {Edit drink} }</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/dialogs/create-update-dialog.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="namePlaceholder" datatype="html">
+        <source>Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/dialogs/create-update-dialog.component.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <note priority="1" from="meaning">name placeholder</note>
+      </trans-unit>
+      <trans-unit id="categoryError" datatype="html">
+        <source>Name is required</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/dialogs/create-update-dialog.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/dialogs/create-update-dialog.component.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <note priority="1" from="meaning">category error message</note>
+      </trans-unit>
+      <trans-unit id="categoryPlaceholder" datatype="html">
+        <source>Category</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/dialogs/create-update-dialog.component.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <note priority="1" from="meaning">category placeholder</note>
+      </trans-unit>
+      <trans-unit id="pricePlaceholder" datatype="html">
+        <source>Price</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/dialogs/create-update-dialog.component.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <note priority="1" from="meaning">price placeholder</note>
+      </trans-unit>
+      <trans-unit id="priceError" datatype="html">
+        <source>Price is required</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/dialogs/create-update-dialog.component.ts</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <note priority="1" from="meaning">price error message</note>
+      </trans-unit>
+      <trans-unit id="closeButton" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/dialogs/create-update-dialog.component.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dialogButton" datatype="html">
+        <source>{VAR_TEXT, text, Update {Update} Create {Create} }</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/dialogs/create-update-dialog.component.ts</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="updateButton" datatype="html">
+        <source>
+          Update
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <note priority="1" from="description">Every update button should have this translation</note>
+        <note priority="1" from="meaning">update button</note>
+      </trans-unit>
+      <trans-unit id="deleteButton" datatype="html">
+        <source>
+          Delete
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <note priority="1" from="description">Every delete button should have this translation</note>
+        <note priority="1" from="meaning">delete button</note>
+      </trans-unit>
+      <trans-unit id="createButton" datatype="html">
+        <source>
+    Create
+  </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <note priority="1" from="description">Every create button should have this translation</note>
+        <note priority="1" from="meaning">create button</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,6 +1,6 @@
 <div fxLayout="column" fxLayoutAlign="space-around start" fxLayoutGap = "10px" class="main-wrapper">
   <mat-toolbar color="primary" fxLayout="column" fxLayoutAlign="space-between start">
-  <div class="toolbar-title">Officiant</div>
+  <div class="toolbar-title">Oficiant</div>
   <mat-progress-bar *ngIf="drinksAreLoading$ | async" color="accent" mode="indeterminate"></mat-progress-bar>
   </mat-toolbar>
   <div fxLayout="row wrap">
@@ -12,10 +12,10 @@
       <mat-card-content>{{ drink.price}}</mat-card-content>
       <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
         <span fxFlexFill></span>
-        <button mat-raised-button color="primary" (click)="updateDrink(drink)" >
+        <button i18n="update button|Every update button should have this translation@@updateButton" mat-raised-button color="primary" (click)="updateDrink(drink)" >
           Update
         </button>
-        <button mat-raised-button color="warn" (click)="deleteDrink(drink)">
+        <button i18n="delete button|Every delete button should have this translation@@deleteButton" mat-raised-button color="warn" (click)="deleteDrink(drink)">
           Delete
         </button>
       </mat-card-actions>
@@ -23,6 +23,7 @@
   </div>
 
   <button
+    i18n="create button|Every create button should have this translation@@createButton"
     (click)="createDrink()"
     mat-fab
     class="fab-button"

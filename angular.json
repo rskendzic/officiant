@@ -32,6 +32,20 @@
             "scripts": []
           },
           "configurations": {
+            "sr-Latn": {
+              "aot": true,
+              "outputPath": "dist/oficiant-sr-lat/",
+              "i18nFile": "src/locale/messages.sr-Latn.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "sr-Latn"
+            },
+            "sr-Cyrl": {
+              "aot": true,
+              "outputPath": "dist/oficiant-sr-cyr/",
+              "i18nFile": "src/locale/messages.sr-Cyrl.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "sr-Cyrl"
+            },
             "hmr": {
               "fileReplacements": [
                 {
@@ -68,6 +82,12 @@
             "hmr": {
               "hmr": true,
               "browserTarget": "officiant:build:hmr"
+            },
+            "sr-Latn": {
+              "browserTarget": "officiant:build:sr-Latn"
+            },
+            "sr-Cyrl": {
+              "browserTarget": "officiant:build:sr-Cyrl"
             },
             "production": {
               "browserTarget": "officiant:build:production"

@@ -17,7 +17,7 @@ export class CreateUpdateDialogComponent implements OnInit {
     id: [null],
   });
 
-  title =  'Create Drink';
+  title =  'CREATE_DRINK';
   buttonText =  'Create';
 
   constructor(
@@ -39,7 +39,7 @@ export class CreateUpdateDialogComponent implements OnInit {
 
   ngOnInit() {
     if (this.editDrinkData) {
-      this.title = 'Edit drink';
+      this.title = 'EDIT_DRINK';
       this.buttonText = 'Update';
       this.drinksForm.setValue(this.editDrinkData);
     }
