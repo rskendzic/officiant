@@ -1,15 +1,14 @@
-import { DrinkService } from '../../service/drink.service';
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
 
-import { Observable, from } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map, switchMap, exhaustMap, catchError, concatMap } from 'rxjs/operators';
 
 import { DrinkActionsTypes, DrinkActionsUnion } from '../actions/drink.actions';
 import * as fromDrinkActions from '../actions/drink.actions';
-import { Drink } from '../../models/Drink';
 
+import { DrinkService } from '../../service/drink.service';
+import { Drink } from '../../models/Drink';
 
 @Injectable()
 export class DrinkEffects {

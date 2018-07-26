@@ -10,7 +10,7 @@ import {
   MatDialogModule
 } from '@angular/material';
 
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithComponentFactories, ModuleWithProviders } from '@angular/core';
 
 @NgModule({
   imports: [MatButtonModule, MatCheckboxModule, MatCardModule, MatProgressSpinnerModule, MatToolbarModule,
@@ -18,4 +18,17 @@ import { NgModule } from '@angular/core';
   exports: [MatButtonModule, MatCheckboxModule, MatCardModule, MatProgressSpinnerModule, MatToolbarModule,
   MatFormFieldModule, MatInputModule, MatDialogModule, MatProgressBarModule],
 })
-export class MaterialModule { }
+export class MaterialModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MaterialModule,
+      providers: []
+    };
+  }
+  static forChild(): ModuleWithProviders {
+    return {
+      ngModule: MaterialModule,
+      providers: []
+    };
+  }
+  }

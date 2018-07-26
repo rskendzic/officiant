@@ -11,50 +11,39 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material.module';
-import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
-import * as fromComponents from './components';
 
-import { reducers } from './store/reducers';
+
 import { environment } from '../environments/environment'; // Angular CLI environemnt
-
-import { DrinkEffects } from './store';
-import { DrinkService } from './service/drink.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ...fromComponents.components
-  ],
-  entryComponents: [
-    ...fromComponents.dialogs
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    MaterialModule,
     BrowserAnimationsModule,
+    MaterialModule.forRoot(),
+    AppRoutingModule,
 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
 
-    EffectsModule.forRoot([DrinkEffects]),
+    EffectsModule.forRoot([]),
     FlexLayoutModule,
-    ReactiveFormsModule,
 
     StoreModule.forRoot({}),
-    StoreModule.forFeature('menu', reducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
   ],
-  providers: [DrinkService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
