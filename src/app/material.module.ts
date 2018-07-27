@@ -7,16 +7,17 @@ import {
   MatToolbarModule,
   MatFormFieldModule,
   MatInputModule,
-  MatDialogModule
+  MatDialogModule,
+  MatIconModule
 } from '@angular/material';
 
-import { NgModule, ModuleWithComponentFactories, ModuleWithProviders } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 
 @NgModule({
   imports: [MatButtonModule, MatCheckboxModule, MatCardModule, MatProgressSpinnerModule, MatToolbarModule,
-  MatFormFieldModule, MatInputModule, MatDialogModule, MatProgressBarModule],
+  MatFormFieldModule, MatInputModule, MatDialogModule, MatProgressBarModule, MatIconModule],
   exports: [MatButtonModule, MatCheckboxModule, MatCardModule, MatProgressSpinnerModule, MatToolbarModule,
-  MatFormFieldModule, MatInputModule, MatDialogModule, MatProgressBarModule],
+  MatFormFieldModule, MatInputModule, MatDialogModule, MatProgressBarModule, MatIconModule],
 })
 export class MaterialModule {
   static forRoot(): ModuleWithProviders {

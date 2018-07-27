@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,7 +20,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers, effects, CustomSerializer } from './store';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
+import * as fromContainers from './containers'
+
 
 import { environment } from '../environments/environment'; // Angular CLI environemnt
 import { storeFreeze } from 'ngrx-store-freeze';
@@ -32,7 +34,7 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    ...fromContainers.containers,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +48,8 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
 
     EffectsModule.forRoot(effects),
     FlexLayoutModule,
+
+    ReactiveFormsModule,
 
     // Connects RouterModule with StoreModule
     StoreRouterConnectingModule.forRoot({
