@@ -1,0 +1,22 @@
+<div fxLayout="row wrap" fxLayoutGap="10px">
+  <mat-progress-bar
+    color="accent" mode="indeterminate"
+    *ngIf="drinksAreLoading$ | async">
+  </mat-progress-bar>
+  <app-menu-item-card
+   *ngFor="let drink of drinks$ | async"
+   class="drink-card__wrapper"
+  [drink] = "drink"
+  (onUpdate) = "updateDrink(drink)"
+  (onDelete) = "deleteDrink(drink)"
+  ></app-menu-item-card>
+</div>
+
+<button
+  i18n="create button|Every create button should have this translation@@createButton"
+  (click)="createDrink()"
+  mat-fab
+  class="fab-button"
+  color="primary">
+  Create
+</button>

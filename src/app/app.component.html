@@ -1,8 +1,5 @@
-<div fxLayout="column" fxLayoutAlign="space-around start" fxLayoutGap = "10px" class="main-wrapper">
-  <mat-toolbar color="primary" fxLayout="column" fxLayoutAlign="space-between start">
-  <div class="toolbar-title">Oficiant</div>
-  <mat-progress-bar *ngIf="drinksAreLoading$ | async" color="accent" mode="indeterminate"></mat-progress-bar>
-  </mat-toolbar>
+<div fxLayout="column" fxLayoutAlign="space-around start"class="main-wrapper">
+  <app-header class="full-width"></app-header>
   <router-outlet></router-outlet>
 </div>
 
