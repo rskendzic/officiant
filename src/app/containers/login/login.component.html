@@ -35,6 +35,7 @@
         i18n="password error message|@@passwordError"
         *ngIf="registerForm.get('password').invalid">Password is required</mat-error>
       </mat-form-field>
+    <div> {{message|async}}</div>
     </mat-card-content>
     <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
       <div fxFlexFill></div>
@@ -42,7 +43,7 @@
         i18n="@@Register"
         mat-raised-button
          color="primary"
-        (click)="close()">
+        (click)="registerUser(registerForm.value)">
         Register
       </button>
     </mat-card-actions>

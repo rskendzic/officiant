@@ -1,4 +1,5 @@
-import { from } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { from, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
@@ -17,9 +18,15 @@ export class AuthenticationService {
       from(this.afAuth.auth.signInWithPopup(provider))
   }
 
-  doRegister({email, password}) {
-    from(firebase
-    .auth()
-    .createUserAndRetrieveDataWithEmailAndPassword(email, password))
+  signUp({email, password}) {
+    return from(
+      this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+    );
+  }
+
+  getIdToken(){
+    return from(
+      this.afAuth.auth.currentUser.getIdToken()
+    );
   }
 }

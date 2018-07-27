@@ -19,4 +19,5 @@ $oficiant-app-theme: mat-dark-theme($oficiant-app-primary, $oficiant-app-accent,
 @include angular-material-theme($oficiant-app-theme);
 
 
-$oficiant-background: mat-color($oficiant-app-primary, 200)
+$oficiant-background: mat-color($oficiant-app-primary, 200);
+$oficiant-warn: mat-color($oficiant-app-warn, default)

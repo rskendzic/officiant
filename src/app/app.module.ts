@@ -10,6 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
 
 import { MaterialModule } from './material.module';
 
@@ -45,6 +47,7 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
+    AngularFireAuthModule,
 
     EffectsModule.forRoot(effects),
     FlexLayoutModule,
