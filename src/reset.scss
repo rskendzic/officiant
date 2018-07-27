@@ -76,8 +76,13 @@ video {
     background: transparent;
 }
 
+html {
+  height: 100vh;
+}
+
 body {
     line-height: 1;
+    height: 100%;
 }
 
 article,
