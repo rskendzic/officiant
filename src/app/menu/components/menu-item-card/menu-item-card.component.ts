@@ -1,4 +1,4 @@
-import { Drink } from './../../models/Drink';
+import { Drink } from '../../models/Drink';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({

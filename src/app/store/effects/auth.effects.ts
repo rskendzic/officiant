@@ -1,5 +1,5 @@
 import { map, exhaustMap, catchError } from 'rxjs/operators';
-import * as fromAuthAction from './../actions/auth.actions';
+import * as fromAuthAction from '../actions/auth.actions';
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 import { AuthenticationService } from '../../authentication/services/authentication.service';

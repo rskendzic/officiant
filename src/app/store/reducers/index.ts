@@ -7,6 +7,7 @@ import { createFeatureSelector, ActionReducerMap } from '@ngrx/store';
 
 import * as fromRouter from '@ngrx/router-store';
 import * as fromAuth from './auth.reducer';
+import * as fromNotification from './notification.reducer';
 
 export interface RouterStateUrl {
   url: string;
@@ -17,14 +18,17 @@ export interface RouterStateUrl {
 export interface AppState {
   routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
   auth: fromAuth.AuthState;
+  notifications: fromNotification.NotificationState;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
   routerReducer: fromRouter.routerReducer,
-  auth: fromAuth.authReducer
+  auth: fromAuth.authReducer,
+  notifications: fromNotification.notificationReducer
 };
 
 export const getAuthFeatureState = createFeatureSelector<fromAuth.AuthState>('auth');
+export const getNotificationFeatureState = createFeatureSelector<fromNotification.NotificationState>('notification');
 
 export const getRouterState = createFeatureSelector<
   fromRouter.RouterReducerState<RouterStateUrl>

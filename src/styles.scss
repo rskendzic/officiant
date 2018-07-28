@@ -6,7 +6,12 @@
     width: 100%;
 }
 
-.error-toaster {
+.error-snackbar {
     background-color: $oficiant-warn;
+    color: white;
+}
+
+.success-snackbar {
+    background-color: $oficiant-primary;
     color: white;
 }
