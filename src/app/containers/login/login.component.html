@@ -1,6 +1,10 @@
 
-<div fxLayout="row" fxLayoutAlign="center center" fxFlexFill class="login-wrapper">
-  <mat-card [formGroup]="registerForm" autocomplete="off">
+<div fxLayout="row" fxLayoutAlign="center center" fxFlexFill class="login-wrapper" >
+	<mat-card
+		[formGroup]="loginForm"
+		autocomplete="off"
+		*ngIf="!showRegister"
+		[@slideInOut]>
     <mat-card-header>
       <mat-card-title>Login</mat-card-title>
       <mat-card-subtitle>With email or Google</mat-card-subtitle>
@@ -15,7 +19,7 @@
         />
         <mat-error
           i18n="email error message|@@emailError"
-          *ngIf="registerForm.get('email').invalid">
+          *ngIf="loginForm.get('email').invalid">
         Email is required
         </mat-error>
       </mat-form-field>
@@ -33,19 +37,35 @@
           (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         <mat-error
         i18n="password error message|@@passwordError"
-        *ngIf="registerForm.get('password').invalid">Password is required</mat-error>
+        *ngIf="loginForm.get('password').invalid">Password is required</mat-error>
       </mat-form-field>
-    <div> {{message|async}}</div>
     </mat-card-content>
-    <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
-      <div fxFlexFill></div>
+    <mat-card-actions fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
       <button
-        i18n="@@Register"
+        class="signin-button"
+        i18n="@@Login"
         mat-raised-button
-         color="primary"
-        (click)="registerUser(registerForm.value)">
-        Register
+        color="primary"
+        (click)="signIn(loginForm.value)">
+        Login with email
+      </button>
+      <button i18n="@@LoginGoogle"
+        mat-raised-button color="primary"
+        class="signin-button"
+        (click)="signInWithGoogle()">
+        Login with google
+      </button>
+      <button
+      i18n="@@NOT_REGISTERED"
+      mat-button
+      color="primary"
+      (click)="toggleRegister()">
+        Not registered?
       </button>
     </mat-card-actions>
   </mat-card>
+  <app-register
+  [showRegister] = "showRegister"
+  (toggleRegister) = "toggleRegister()"
+  ></app-register>
 </div>

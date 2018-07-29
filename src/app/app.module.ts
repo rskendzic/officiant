@@ -27,6 +27,7 @@ import * as fromContainers from './containers'
 
 import { environment } from '../environments/environment'; // Angular CLI environemnt
 import { storeFreeze } from 'ngrx-store-freeze';
+import { RegisterComponent } from './containers/register/register.component';
 
 export const metaReducers: MetaReducer<any>[] = !environment.production
   ? [storeFreeze]
@@ -37,11 +38,12 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
   declarations: [
     AppComponent,
     ...fromContainers.containers,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     MaterialModule.forRoot(),
+    BrowserAnimationsModule,
     AppRoutingModule,
 
     AngularFireModule.initializeApp(environment.firebase),

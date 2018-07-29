@@ -9,7 +9,8 @@ const IMPORTS = [
   MatInputModule,
   MatDialogModule,
   MatIconModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatSelectModule
 ]
 
 import {
@@ -23,7 +24,8 @@ import {
   MatInputModule,
   MatDialogModule,
   MatIconModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatSelectModule
 } from '@angular/material';
 
 import { NgModule, ModuleWithProviders } from '@angular/core';

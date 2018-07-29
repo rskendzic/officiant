@@ -15,3 +15,11 @@
     background-color: $oficiant-primary;
     color: white;
 }
+
+[hidden] {
+    display: none !important;
+}
+
+mat-card {
+	border-radius: 10px !important;
+}
