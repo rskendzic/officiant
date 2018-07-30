@@ -14,7 +14,8 @@ import * as authActions from '../../store/actions/auth.actions'
 	animations: [SlideInOutAnimation]
 })
 export class LoginComponent implements OnInit {
-  showRegister = false;
+	showRegister = false;
+	hide = true;
 
   constructor(private fb: FormBuilder, private store: Store<fromStore.AppState>) {
   }

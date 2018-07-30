@@ -15,6 +15,7 @@ import * as fromComponents from './components';
 
 import { MaterialModule } from '../material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import * as fromGuards from './../guards';
 
 @NgModule({
   imports: [

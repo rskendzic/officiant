@@ -1,5 +1,5 @@
 import { User } from './../actions/auth.actions';
-import { map, exhaustMap, catchError, switchMap } from 'rxjs/operators';
+import { map, exhaustMap, catchError, tap } from 'rxjs/operators';
 import * as fromAuthAction from '../actions/auth.actions';
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
@@ -19,12 +19,30 @@ export class AuthEffects {
 			exhaustMap((authData: User) =>
 				this.authService.createUser(authData)
 				.pipe(
-					map((createdUser) => {
-						const {uid,email}= createdUser
-						return new fromAuthAction.SignUpSuccess({ uid, email})
+					map((userSnapshot) => {
+					const { uid, email, role } = userSnapshot
+					return new fromAuthAction.SignUpSuccess({ uid, email, role})
 					}),
           catchError((errorData) => of(new fromAuthAction.SignUpFail(errorData)))
         )
       ),
-    )
+		)
+
+	@Effect()
+	signIn: Observable<fromAuthAction.AuthActionsUnion> = this.actions$
+		.ofType(fromAuthAction.AuthActionTypes.SIGN_IN)
+		.pipe(
+			map((action: fromAuthAction.SignIn) => action.payload),
+			exhaustMap((authData: User) =>
+				this.authService.signIn(authData)
+					.pipe(
+						map((userSnapshot) => {
+						const user = userSnapshot;
+						return new fromAuthAction.SignInSuccess({...user})
+						}),
+						catchError((errorData) => of(new fromAuthAction.SignInFail(errorData)))
+					)
+			),
+	)
+
 }

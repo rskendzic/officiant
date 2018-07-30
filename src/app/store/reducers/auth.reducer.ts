@@ -3,24 +3,29 @@ import { AuthActionTypes, AuthActionsUnion } from "../actions/auth.actions";
 export interface AuthState {
   token: string,
   errorMessage: { code: string, message: string},
-  authenticated: boolean
+	authenticated: boolean,
+	role: string,
 }
 
 export const AuthInitialState: AuthState = {
   token: null,
-  authenticated: false,
+	authenticated: false,
+	role: null,
   errorMessage: {code: '', message: ''}
 }
 
  export function authReducer (state = AuthInitialState,action: AuthActionsUnion) {
   switch (action.type) {
     case AuthActionTypes.SIGN_UP_SUCCESS:
+    case AuthActionTypes.SIGN_IN_SUCCESS:
         return {
           ...state,
           authenticated: true,
-          token: action.payload.uid
+					token: action.payload.uid,
+					role: action.payload.role
         }
     case AuthActionTypes.SIGN_UP_FAIL:
+    case AuthActionTypes.SIGN_IN_FAIL:
       return {
         ...state,
         errorMessage: action.payload
@@ -29,7 +34,8 @@ export const AuthInitialState: AuthState = {
       return {
         ...state,
         authenticated: false,
-        token: null
+				token: null,
+				role: null,
       }
     default:
       return state

@@ -3,19 +3,18 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: '', pathMatch: 'full', redirectTo: 'menu' },
   {
     path: 'login',
     pathMatch: 'full',
     canActivate: [],
     component: fromContainers.LoginComponent
   },
-  // { path: 'register', pathMatch: 'full', canActivate: [] },
   {
-    path: 'menu',
-    canActivate: [],
+		path: 'menu',
     loadChildren: './menu/menu.module#MenuModule',
   },
+	{ path: '**', redirectTo: 'menu'},
 ];
 
 @NgModule({

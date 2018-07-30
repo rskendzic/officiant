@@ -2,8 +2,9 @@ import { Action } from '@ngrx/store';
 import * as firebase from 'firebase/app'
 
 export interface User {
-	uid: string;
+	uid?: string;
 	email: string;
+	password: string;
 	role?: string;
 }
 
@@ -15,6 +16,7 @@ export enum AuthActionTypes {
 
   SIGN_IN = '[AUTH] Sign in',
   SIGN_IN_SUCCESS = '[FIREBASE] Sign in success',
+  SIGN_IN_FAIL = '[FIREBASE] Sign in fail',
 
   LOG_OUT = '[AUTH] Log out',
 }
@@ -38,9 +40,14 @@ export class SignIn implements Action {
   constructor(public payload: {email:string, password:string}) { }
 }
 
-
 export class SignInSuccess implements Action {
-  readonly type = AuthActionTypes.SIGN_IN_SUCCESS;
+	readonly type = AuthActionTypes.SIGN_IN_SUCCESS;
+	constructor(public payload: any) { }
+}
+
+export class SignInFail implements Action {
+	readonly type = AuthActionTypes.SIGN_IN_FAIL;
+	constructor(public payload: any) { }
 }
 
 export class LogOut implements Action {
@@ -52,5 +59,7 @@ export type AuthActionsUnion =
 SignUp
 | SignUpSuccess
 | SignUpFail
+| SignInSuccess
+| SignInFail
 | SignIn
 | LogOut;

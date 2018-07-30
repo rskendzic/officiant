@@ -23,6 +23,7 @@ import { reducers, effects, CustomSerializer } from './store';
 
 import { AppComponent } from './app.component';
 import * as fromContainers from './containers'
+import * as fromGuards from './guards'
 
 
 import { environment } from '../environments/environment'; // Angular CLI environemnt
@@ -67,7 +68,7 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
   ],
-  providers: [{ provide: RouterStateSerializer, useClass: CustomSerializer }],
+  providers: [{ provide: RouterStateSerializer, useClass: CustomSerializer }, ...fromGuards.guards],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
