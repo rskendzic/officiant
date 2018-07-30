@@ -3,7 +3,7 @@ import { from } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import { map, switchMap } from '../../../../node_modules/rxjs/operators';
+import { map } from '../../../../node_modules/rxjs/operators';
 
 @Injectable({
 	providedIn: 'root'
@@ -26,9 +26,10 @@ export class AuthenticationService {
 	createUser(userData) {
 		return this.signUp(userData)
 		.pipe(
-				map((userCredential: firebase.auth.UserCredential) =>
-					from(this.afs.doc(`users/${userCredential.user.uid}`).set(userData))
-				),
+				map(({user}: firebase.auth.UserCredential) => {
+					const { uid } = user;
+					return from(this.afs.doc(`users/${uid}`).set({ ...userData, uid}))
+				}),
 				map(() => this.afAuth.auth.currentUser)
 	)
 	}
