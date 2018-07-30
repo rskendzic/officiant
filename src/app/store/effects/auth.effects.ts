@@ -1,9 +1,10 @@
-import { map, exhaustMap, catchError } from 'rxjs/operators';
+import { User } from './../actions/auth.actions';
+import { map, exhaustMap, catchError, switchMap } from 'rxjs/operators';
 import * as fromAuthAction from '../actions/auth.actions';
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 import { AuthenticationService } from '../../authentication/services/authentication.service';
-import { Observable, of, from, empty } from 'rxjs';
+import { Observable, of} from 'rxjs';
 
 @Injectable()
 export class AuthEffects {
@@ -15,9 +16,13 @@ export class AuthEffects {
     .ofType(fromAuthAction.AuthActionTypes.SIGN_UP)
     .pipe(
       map((action: fromAuthAction.SignUp) => action.payload),
-      exhaustMap((authData: {email: string, password: string}) =>
-        this.authService.signUp(authData).pipe(
-          map((token)=>new fromAuthAction.SignUpSuccess(token)),
+			exhaustMap((authData: User) =>
+				this.authService.createUser(authData)
+				.pipe(
+					map((createdUser) => {
+						const {uid,email}= createdUser
+						return new fromAuthAction.SignUpSuccess({ uid, email})
+					}),
           catchError((errorData) => of(new fromAuthAction.SignUpFail(errorData)))
         )
       ),

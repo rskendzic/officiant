@@ -1,4 +1,11 @@
 import { Action } from '@ngrx/store';
+import * as firebase from 'firebase/app'
+
+export interface User {
+	uid: string;
+	email: string;
+	role?: string;
+}
 
 export enum AuthActionTypes {
   SIGN_UP = '[AUTH] Sign up',
@@ -14,7 +21,7 @@ export enum AuthActionTypes {
 
 export class SignUp implements Action {
   readonly type = AuthActionTypes.SIGN_UP;
-  constructor(public payload: {email:string, password:string}) { }
+	constructor(public payload: User) { }
 }
 export class SignUpSuccess implements Action {
   readonly type = AuthActionTypes.SIGN_UP_SUCCESS;

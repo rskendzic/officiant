@@ -17,8 +17,7 @@ $oficiant-app-theme: mat-dark-theme($oficiant-app-primary, $oficiant-app-accent,
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($oficiant-app-theme);
-
-
 $oficiant-background: mat-color($oficiant-app-primary, 200);
 $oficiant-warn: mat-color($oficiant-app-warn, default);
+$oficiant-success: mat-color(mat-palette($mat-green, 500),default);
 $oficiant-primary: mat-color($oficiant-app-primary, default);

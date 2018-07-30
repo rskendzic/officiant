@@ -18,7 +18,7 @@ export const AuthInitialState: AuthState = {
         return {
           ...state,
           authenticated: true,
-          token: action.payload
+          token: action.payload.uid
         }
     case AuthActionTypes.SIGN_UP_FAIL:
       return {
