@@ -30,7 +30,7 @@ export class NotificationEffects {
 	.pipe(
 		map((action: fromAuthAction.SignUpSuccess) => action.payload),
 		map((successData) => new fromNotificationAction.ShowSnackbar({
-			message: `Created user with id: ${successData.email}`,
+			message: `Created user with email: ${successData.email}`,
 			config: fromNotificationAction.NotificationConfigTypes.SUCCESS_SNACKBAR
 		}))
 	)

@@ -25,9 +25,9 @@
         <mat-error i18n="password error message|@@passwordError" *ngIf="registerForm.get('password').invalid">Password is required</mat-error>
       </mat-form-field>
       <mat-form-field fxFlexFill>
-        <mat-select placeholder="Role" formControlName="role" name="role">
-          <mat-option *ngFor="let role of roles" [value]="role">
-            {{role}}
+        <mat-select [compareWith]="compareFn" placeholder="Role" formControlName="role" name="role">
+          <mat-option *ngFor="let roleObj of roles" [value]="roleObj.role">
+            {{roleObj.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
