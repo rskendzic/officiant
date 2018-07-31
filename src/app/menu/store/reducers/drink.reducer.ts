@@ -14,7 +14,7 @@ export interface DrinksState extends EntityState<Drink> {
 
 export const initialState: DrinksState = adapter.getInitialState({
   loaded: false, // if entities are not loading, and they are not loaded -> it's an error
-  loading: false,
+	loading: false,
 });
 
 /// Reducer function

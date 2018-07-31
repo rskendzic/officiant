@@ -22,7 +22,7 @@ export const AuthInitialState: AuthState = {
           ...state,
           authenticated: true,
 					token: action.payload.uid,
-					role: action.payload.role
+					role: action.payload.role,
         }
     case AuthActionTypes.SIGN_UP_FAIL:
     case AuthActionTypes.SIGN_IN_FAIL:
