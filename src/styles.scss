@@ -16,6 +16,12 @@
     color: white;
 }
 
+.info-snackbar {
+		background-color: $oficiant-primary;
+		font-weight: 700;
+		text-align: center;
+}
+
 [hidden] {
     display: none !important;
 }

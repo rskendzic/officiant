@@ -57,14 +57,24 @@ export class NotificationEffects {
 	)
 
 	@Effect()
-	upsertDrink: Observable<fromNotificationAction.ShowSnackbar> = this.actions$
+	upsertDrinkSuccess: Observable<fromNotificationAction.ShowSnackbar> = this.actions$
 		.ofType(...ENTITIES_SUCCESS_TYPES)
 		.pipe(
 			map((action: fromMenuAction.UpdateDrinkSuccess) => action.payload),
-			tap(() => this.router.navigate(['/'])),
 			map((successData) => new fromNotificationAction.ShowSnackbar({
 				message: `${successData.name} successfully stored!`,
 				config: fromNotificationAction.NotificationConfigTypes.SUCCESS_SNACKBAR
+			}))
+		)
+
+	@Effect()
+	deleteDrinkSuccess: Observable<fromNotificationAction.ShowSnackbar> = this.actions$
+		.ofType(fromMenuAction.DrinkActionsTypes.DELETE_DRINK_SUCCESS)
+		.pipe(
+			map((action: fromMenuAction.DeleteDrinkSuccess) => action.payload),
+			map((successData) => new fromNotificationAction.ShowSnackbar({
+				message: `${successData.name} successfully deleted!`,
+				config: fromNotificationAction.NotificationConfigTypes.INFO_SNACKBAR
 			}))
 		)
 
