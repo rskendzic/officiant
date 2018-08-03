@@ -30,7 +30,7 @@ export const AuthInitialState: AuthState = {
         ...state,
         errorMessage: action.payload
     }
-    case AuthActionTypes.LOG_OUT:
+    case AuthActionTypes.LOG_OUT_SUCCESS:
       return {
         ...state,
         authenticated: false,

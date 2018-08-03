@@ -3,6 +3,8 @@ import { Drink } from '../../models/Drink';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Inject, Component, OnInit } from '@angular/core';
 
+interface DrinkCategory { name: string, value: string }
+
 @Component({
   selector: 'app-create-update-dialog',
   templateUrl: 'create-update-dialog.component.html',
@@ -15,7 +17,30 @@ export class CreateUpdateDialogComponent implements OnInit {
     price: ['', Validators.required],
     key: [null],
     id: [null],
-  });
+	});
+
+	private DRINK_CATEGORIES: DrinkCategory[]= [
+		{
+			name: 'Beer',
+			value: 'BEER'
+		},
+		{
+			name: 'Coffee',
+			value: 'COFFEE'
+		},
+		{
+			name: 'Juice',
+			value: 'JUICE'
+		},
+		{
+			name: 'Water',
+			value: 'WATER'
+		},
+		{
+			name: 'Wine',
+			value: 'WINE'
+		}
+	]
 
   title =  'CREATE_DRINK';
   buttonText =  'Create';
@@ -39,10 +64,14 @@ export class CreateUpdateDialogComponent implements OnInit {
 
   ngOnInit() {
     if (this.editDrinkData) {
-      this.title = 'EDIT_DRINK';
+			this.title = 'EDIT_DRINK';
       this.buttonText = 'Update';
       this.drinksForm.setValue(this.editDrinkData);
     }
-  }
+	}
+
+	compareFn(compared: DrinkCategory, comperer: DrinkCategory): boolean {
+		return compared && comperer ? compared.value === comperer.value : compared === comperer;
+	}
 
 }

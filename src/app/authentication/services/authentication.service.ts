@@ -1,5 +1,5 @@
 import { AngularFirestore } from 'angularfire2/firestore';
-import { from } from 'rxjs';
+import { from, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
@@ -12,11 +12,8 @@ export class AuthenticationService {
 
 	constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore) { }
 
-	doGoogleLogin() {
-		let provider = new firebase.auth.GoogleAuthProvider();
-		provider.addScope('profile');
-		provider.addScope('email');
-		from(this.afAuth.auth.signInWithPopup(provider))
+	logOut(){
+		return of(this.afAuth.auth.signOut())
 	}
 
 	signIn({ email, password }) {
@@ -51,6 +48,10 @@ export class AuthenticationService {
 				switchMap(snapshot => snapshot),
 				map(snapshot => snapshot.data()),
 			)
+	}
+
+	checkAuthState(){
+		return this.afAuth.authState
 	}
 
 	getIdToken() {

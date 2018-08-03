@@ -1,9 +1,10 @@
 <div fxLayout="column" fxLayoutAlign="start start" class="main-wrapper">
   <app-header class="full-width"></app-header>
   <div fxLayout="row wrap" fxLayoutGap="10px">
-    <app-menu-item-card
-     *ngFor="let drink of drinks$ | async"
-     class="drink-card__wrapper"
+		<app-menu-item-card
+		fxFlex.xs="100%"
+    *ngFor="let drink of drinks$ | async"
+    class="drink-card__wrapper"
     [drink] = "drink"
     (onUpdate) = "updateDrink(drink)"
     (onDelete) = "deleteDrink(drink)"

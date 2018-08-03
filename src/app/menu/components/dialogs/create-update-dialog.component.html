@@ -11,19 +11,22 @@
             <mat-error
             i18n="category error message|@@categoryError"
             *ngIf="drinksForm.get('name').invalid">Name is required</mat-error>
-        </mat-form-field>
-        <mat-form-field fxFlexFill>
-          <input
-            matInput
-            i18n-placeholder="category placeholder|@@categoryPlaceholder"
-            placeholder="Category"
-            type="text"
-            formControlName="category"
-          />
-          <mat-error
-          i18n="category error message|@@categoryError"
-          *ngIf="drinksForm.get('category').invalid">Category is required</mat-error>
-        </mat-form-field>
+				</mat-form-field>
+				<mat-form-field fxFlexFill>
+					<mat-select
+						[compareWith]="compareFn"
+						 i18n-placeholder="category placeholder|@@categoryPlaceholder"
+						 placeholder="Category"
+						 type="text"
+						 formControlName="category">
+						<mat-option *ngFor="let category of DRINK_CATEGORIES" [value]="category">
+							{{category.name}}
+						</mat-option>
+						</mat-select>
+						<mat-error
+						i18n="category error message|@@categoryError"
+						*ngIf="drinksForm.get('category').invalid">Category is required</mat-error>
+				</mat-form-field>
         <mat-form-field fxFlexFill>
           <input
             i18n-placeholder="price placeholder|@@pricePlaceholder"

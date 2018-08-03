@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { User } from './../actions/auth.actions';
 import { map, exhaustMap, catchError, tap } from 'rxjs/operators';
 import * as fromAuthAction from '../actions/auth.actions';
@@ -8,7 +9,10 @@ import { Observable, of} from 'rxjs';
 
 @Injectable()
 export class AuthEffects {
-  constructor(private actions$: Actions, private authService: AuthenticationService) {
+  constructor(
+		private actions$: Actions,
+		private router: Router,
+		private authService: AuthenticationService) {
   }
 
   @Effect()
@@ -43,6 +47,16 @@ export class AuthEffects {
 						catchError((errorData) => of(new fromAuthAction.SignInFail(errorData)))
 					)
 			),
+	)
+
+	@Effect()
+	logOut: Observable<fromAuthAction.AuthActionsUnion> = this.actions$
+		.ofType(fromAuthAction.AuthActionTypes.LOG_OUT)
+		.pipe(
+			exhaustMap(() => this.authService.logOut()),
+			tap(()=> this.router.navigate(['/login'])),
+			map(() => new fromAuthAction.LogOutSuccess()),
+			catchError((errorData) => of(new fromAuthAction.LogOutFail(errorData)))
 	)
 
 }

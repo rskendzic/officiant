@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as fromStore from '../../store';
+import * as fromStore from '../../../store';
+import * as fromMenuStore from '../../store';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,11 +13,14 @@ export class HeaderComponent implements OnInit {
 
   drinksAreLoading$: Observable<boolean>;
 
-  constructor(private store: Store<fromStore.MenuState>) {
-    this.drinksAreLoading$ = this.store.select(fromStore.areDrinksLoading);
+  constructor(private appStore: Store<fromStore.AppState>) {
+		this.drinksAreLoading$ = this.appStore.select(fromMenuStore.areDrinksLoading);
   }
 
   ngOnInit() {
-  }
+	}
+	logOut() {
+		this.appStore.dispatch(new fromStore.LogOut())
+	}
 
 }

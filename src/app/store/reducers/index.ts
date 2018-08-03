@@ -1,3 +1,4 @@
+import * as fromMenu from './../../menu/store/reducers';
 import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
@@ -18,13 +19,13 @@ export interface RouterStateUrl {
 export interface AppState {
   routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
   auth: fromAuth.AuthState;
-  notifications: fromNotification.NotificationState;
+	notifications: fromNotification.NotificationState;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
   routerReducer: fromRouter.routerReducer,
   auth: fromAuth.authReducer,
-  notifications: fromNotification.notificationReducer
+	notifications: fromNotification.notificationReducer,
 };
 
 export const getAuthFeatureState = createFeatureSelector<fromAuth.AuthState>('auth');

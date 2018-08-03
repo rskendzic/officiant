@@ -19,6 +19,8 @@ export enum AuthActionTypes {
   SIGN_IN_FAIL = '[FIREBASE] Sign in fail',
 
   LOG_OUT = '[AUTH] Log out',
+	LOG_OUT_SUCCESS = '[FIREBASE] Log out success',
+	LOG_OUT_FAIL = '[FIREBASE] Log out failed',
 }
 
 export class SignUp implements Action {
@@ -52,8 +54,17 @@ export class SignInFail implements Action {
 
 export class LogOut implements Action {
   readonly type = AuthActionTypes.LOG_OUT;
-  constructor(public payload: string) { }
 }
+
+export class LogOutSuccess implements Action {
+	readonly type = AuthActionTypes.LOG_OUT_SUCCESS;
+}
+
+export class LogOutFail implements Action {
+	readonly type = AuthActionTypes.LOG_OUT_FAIL;
+	constructor(public payload: any) { }
+}
+
 
 export type AuthActionsUnion =
 SignUp
@@ -62,4 +73,6 @@ SignUp
 | SignInSuccess
 | SignInFail
 | SignIn
-| LogOut;
+| LogOut
+| LogOutFail
+| LogOutSuccess;

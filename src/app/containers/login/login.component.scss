@@ -3,7 +3,8 @@
     background-color: $oficiant-background;
     background: linear-gradient($oficiant-background, $oficiant-primary);
     mat-card {
-        min-height: 300px;
+				min-height: 300px;
+				max-width: 90%;
     }
     .signin-button {
         min-width: 150px;
