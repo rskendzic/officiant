@@ -1,3 +1,5 @@
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MaterialModule } from './../../material.module';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
@@ -8,7 +10,11 @@ describe('LoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginComponent ]
+			declarations: [ LoginComponent ],
+			imports: [
+				MaterialModule.forRoot(),
+				FlexLayoutModule
+			]
     })
     .compileComponents();
   }));

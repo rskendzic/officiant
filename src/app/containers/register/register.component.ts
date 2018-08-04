@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
 	registerForm = this.fb.group({
 		email: ['', Validators.required],
 		password: ['', Validators.required],
-		role: ['Waiter', Validators.required]
+		role: ['WAITER', Validators.required]
 	});
 
 	hideRegister() {
