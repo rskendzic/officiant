@@ -1,18 +1,3 @@
-const IMPORTS = [
-  MatButtonModule,
-  MatCheckboxModule,
-  MatCardModule,
-  MatProgressSpinnerModule,
-  MatProgressBarModule,
-  MatToolbarModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatDialogModule,
-  MatIconModule,
-  MatSnackBarModule,
-  MatSelectModule
-]
-
 import {
   MatButtonModule,
   MatCheckboxModule,
@@ -27,6 +12,21 @@ import {
   MatSnackBarModule,
   MatSelectModule
 } from '@angular/material';
+
+const IMPORTS = [
+	MatButtonModule,
+	MatCheckboxModule,
+	MatCardModule,
+	MatProgressSpinnerModule,
+	MatProgressBarModule,
+	MatToolbarModule,
+	MatFormFieldModule,
+	MatInputModule,
+	MatDialogModule,
+	MatIconModule,
+	MatSnackBarModule,
+	MatSelectModule
+]
 
 import { NgModule, ModuleWithProviders } from '@angular/core';
 
