@@ -1,4 +1,4 @@
-import { Drink } from '../models/Drink';
+import { MenuItem } from '../models/MenuItem';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { take } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
@@ -21,14 +21,14 @@ export class DrinkService {
     return from(this.afs.collection('drinks').doc(drinkId).delete());
   }
 
-  updateDrink(drink: Drink) {
+	updateDrink(drink: MenuItem) {
     return from(this.afs.collection('drinks').doc(drink.key).update({
       ...drink
     }));
   }
 
 
-  createDrink(payload: Drink) {
+	createDrink(payload: MenuItem) {
     const drinkList = this.afs.collection('drinks');
     const key = this.afs.createId();
     drinkList.doc(key).set({ ...payload, key });

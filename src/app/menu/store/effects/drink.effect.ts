@@ -8,7 +8,7 @@ import { DrinkActionsTypes, DrinkActionsUnion } from '../actions/drink.actions';
 import * as fromDrinkActions from '../actions/drink.actions';
 
 import { DrinkService } from '../../service/drink.service';
-import { Drink } from '../../models/Drink';
+import { MenuItem } from '../../models/MenuItem';
 
 @Injectable()
 export class DrinkEffects {
@@ -20,7 +20,7 @@ export class DrinkEffects {
     .pipe(
       map((action: fromDrinkActions.GetDrinks) => action.payload),
       switchMap(payload => this.fromService.getDrinks(payload)),
-      map((drinks: Drink[]) => {
+			map((drinks: MenuItem[]) => {
         drinks = drinks.map((drink, id) => {
           drink.id = id;
           return drink;
@@ -44,7 +44,7 @@ export class DrinkEffects {
   deleteDrink: Observable<DrinkActionsUnion> = this.actions.ofType(DrinkActionsTypes.DELETE_DRINK)
     .pipe(
       map((action: fromDrinkActions.DeleteDrink) => action.payload),
-      exhaustMap((drink: Drink) => this.fromService.deleteDrink(drink.key)
+			exhaustMap((drink: MenuItem) => this.fromService.deleteDrink(drink.key)
         .pipe(
           map(() => new fromDrinkActions.DeleteDrinkSuccess(drink))
         )
@@ -55,7 +55,7 @@ export class DrinkEffects {
   updateDrink: Observable<any> = this.actions.ofType(DrinkActionsTypes.UPDATE_DRINK)
     .pipe(
       map((action: fromDrinkActions.UpdateDrink) => action.payload),
-      concatMap((drink: Drink) =>
+			concatMap((drink: MenuItem) =>
         this.fromService.updateDrink(drink)
           .pipe(
             map(() => new fromDrinkActions.UpdateDrinkSuccess(drink)),

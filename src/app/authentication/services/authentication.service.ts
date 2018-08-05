@@ -2,7 +2,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { from, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 import { map, switchMap, mergeMap, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -52,6 +52,14 @@ export class AuthenticationService {
 
 	checkAuthState(){
 		return this.afAuth.authState
+	}
+
+	checkUserRole(uid, role){
+		return from(this.afs.doc(`users/${uid}`).ref.get())
+		.pipe(
+			map(userSnapshot => userSnapshot.data()),
+			map(documentSnapshot => documentSnapshot.role === role)
+		)
 	}
 
 	getIdToken() {

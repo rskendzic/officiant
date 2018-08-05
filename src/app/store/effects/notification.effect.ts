@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { map, tap, } from 'rxjs/operators';
 import * as fromAuthAction from '../actions/auth.actions';
-import * as fromMenuAction from '../../menu/store/actions/';
+import * as fromMenuAction from '../../menu/store/actions';
 import * as fromNotificationAction from '../actions/notification.action';
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';

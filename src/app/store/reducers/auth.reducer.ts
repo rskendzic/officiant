@@ -46,3 +46,4 @@ export const AuthInitialState: AuthState = {
 export const getErrorMessage = (state: AuthState) => state.errorMessage;
 export const getAuthenticated = (state: AuthState) => state.authenticated;
 export const getToken = (state: AuthState) => state.token;
+export const getUserRole = (state: AuthState) => state.role;

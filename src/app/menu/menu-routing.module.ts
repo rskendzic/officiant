@@ -1,4 +1,4 @@
-import * as fromGuards from './../guards';
+import * as fromGuards from '../guards';
 import { MenuComponent } from './containers/menu.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';

@@ -1,4 +1,4 @@
-import { Drink } from '../../models/Drink';
+import { MenuItem } from '../../models/MenuItem';
 import { Action } from '@ngrx/store';
 
 export enum DrinkActionsTypes {
@@ -24,42 +24,42 @@ export class GetDrinks implements Action {
 
 export class GetDrinksSuccess implements Action {
   readonly type = DrinkActionsTypes.GET_DRINKS_SUCCESS;
-  constructor(public payload: Drink[]) { }
+  constructor(public payload: MenuItem[]) { }
 }
 
 export class GetDrinksFail implements Action {
   readonly type = DrinkActionsTypes.GET_DRINKS_FAIL;
-  constructor(public payload: Drink[]) { }
+  constructor(public payload: MenuItem[]) { }
 }
 
 export class CreateDrink implements Action {
   readonly type = DrinkActionsTypes.CREATE_DRINK;
-  constructor(public payload: Drink) { }
+	constructor(public payload: MenuItem) { }
 }
 
 export class CreateDrinkSuccess implements Action {
   readonly type = DrinkActionsTypes.CREATE_DRINK_SUCCESS;
-  constructor(public payload: Drink) { }
+	constructor(public payload: MenuItem) { }
 }
 
 export class DeleteDrink implements Action {
   readonly type = DrinkActionsTypes.DELETE_DRINK;
-  constructor(public payload: Drink) { }
+	constructor(public payload: MenuItem) { }
 }
 
 export class DeleteDrinkSuccess implements Action {
   readonly type = DrinkActionsTypes.DELETE_DRINK_SUCCESS;
-  constructor(public payload: Drink) { }
+	constructor(public payload: MenuItem) { }
 }
 
 export class UpdateDrink implements Action {
   readonly type = DrinkActionsTypes.UPDATE_DRINK;
-  constructor(public payload: Drink) { }
+	constructor(public payload: MenuItem) { }
 }
 
 export class UpdateDrinkSuccess implements Action {
   readonly type = DrinkActionsTypes.UPDATE_DRINK_SUCCESS;
-  constructor(public payload: Drink) { }
+	constructor(public payload: MenuItem) { }
 }
 
 export type DrinkActionsUnion

@@ -24,3 +24,8 @@ export const getToken = createSelector(
   getAuthState,
   fromAuth.getToken
 );
+
+export const getUserRole = createSelector(
+	getAuthState,
+	fromAuth.getUserRole
+);

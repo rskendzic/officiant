@@ -1,4 +1,4 @@
-import { Drink } from '../../models/Drink';
+import { MenuItem } from '../../models/MenuItem';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -8,9 +8,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class MenuItemCardComponent implements OnInit {
 
-  @Input() drink: Drink
-  @Output() onUpdate = new EventEmitter<Drink>()
-  @Output() onDelete = new EventEmitter<Drink>()
+  @Input() drink: MenuItem
+  @Output() onUpdate = new EventEmitter<MenuItem>()
+  @Output() onDelete = new EventEmitter<MenuItem>()
 
   constructor() { }
 

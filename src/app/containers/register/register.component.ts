@@ -1,5 +1,5 @@
-import { SlideInOutAnimation } from './../../animations/slideInOut.animation';
-import * as fromStore from './../../store/reducers';
+import { SlideInOutAnimation } from '../../animations/slideInOut.animation';
+import * as fromStore from '../../store/reducers';
 import { Store } from '@ngrx/store';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';

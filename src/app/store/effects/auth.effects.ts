@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { User } from './../actions/auth.actions';
+import { User } from '../actions/auth.actions';
 import { map, exhaustMap, catchError, tap } from 'rxjs/operators';
 import * as fromAuthAction from '../actions/auth.actions';
 import { Injectable } from '@angular/core';

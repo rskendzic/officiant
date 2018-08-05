@@ -1,4 +1,4 @@
-import { environment } from './../../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestore, AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';

@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Drink } from '../models/Drink';
+import { MenuItem } from '../models/MenuItem';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -17,7 +17,7 @@ import { CreateUpdateDialogComponent } from '../components';
 })
 export class MenuComponent implements OnInit {
 
-  drinks$: Observable<Drink[]>;
+	drinks$: Observable<MenuItem[]>;
   drinksAreLoading$: Observable<boolean>;
   firebaseUpdated$: Observable<any>;
 
@@ -36,7 +36,7 @@ export class MenuComponent implements OnInit {
     this.store.dispatch(new drinkActions.CreateDrink(formValue));
   }
 
-  updateDrink(drink: Drink) {
+	updateDrink(drink: MenuItem) {
     const dialogRef = this.dialog.open(CreateUpdateDialogComponent, {
       data: drink
     });
@@ -57,7 +57,7 @@ export class MenuComponent implements OnInit {
     });
   }
 
-  deleteDrink(drink: Drink) {
+	deleteDrink(drink: MenuItem) {
     this.store.dispatch(new drinkActions.DeleteDrink(drink));
   }
 

@@ -1,5 +1,5 @@
 import { FormBuilder, Validators } from '@angular/forms';
-import { Drink } from '../../models/Drink';
+import { MenuItem } from '../../models/MenuItem';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Inject, Component, OnInit } from '@angular/core';
 
@@ -48,7 +48,7 @@ export class CreateUpdateDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<CreateUpdateDialogComponent>,
     private fb: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public editDrinkData: Drink) { }
+		@Inject(MAT_DIALOG_DATA) public editDrinkData: MenuItem) { }
 
   onNoClick(): void {
     this.dialogRef.close(null);
@@ -58,7 +58,7 @@ export class CreateUpdateDialogComponent implements OnInit {
     this.dialogRef.close(null);
   }
 
-  saveDrink(drink: Drink): void {
+	saveDrink(drink: MenuItem): void {
     this.dialogRef.close(drink);
   }
 

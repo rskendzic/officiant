@@ -1,13 +1,13 @@
-import { Drink } from '../../models/Drink';
+import { MenuItem } from '../../models/MenuItem';
 import { DrinkActionsTypes, DrinkActionsUnion } from '../actions/drink.actions';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
-export const adapter: EntityAdapter<Drink> = createEntityAdapter<Drink>({
-    selectId: (entity: Drink) => entity.id,
+export const adapter: EntityAdapter<MenuItem> = createEntityAdapter<MenuItem>({
+	selectId: (entity: MenuItem) => entity.id,
     sortComparer: false
   });
 
-export interface DrinksState extends EntityState<Drink> {
+export interface DrinksState extends EntityState<MenuItem> {
   loaded: boolean;
   loading: boolean;
 }

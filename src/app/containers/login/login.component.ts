@@ -1,4 +1,4 @@
-import { SlideInOutAnimation } from './../../animations/slideInOut.animation';
+import { SlideInOutAnimation } from '../../animations/slideInOut.animation';
 import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';

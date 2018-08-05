@@ -1,4 +1,4 @@
-import * as fromMenu from './../../menu/store/reducers';
+import * as fromMenu from '../../menu/store/reducers';
 import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
