@@ -12,11 +12,11 @@ const routes: Routes = [
   },
   {
 		path: 'menu',
-    loadChildren: './menu/menu.module#MenuModule',
+    loadChildren: () => import('./menu/menu.module').then(m => m.MenuModule),
 	},
 	{
 		path: 'waiter',
-    loadChildren: './waiter/waiter.module#WaiterModule',
+    loadChildren: () => import('./waiter/waiter.module').then(m => m.WaiterModule),
   },
 	{ path: '**', redirectTo: 'menu'},
 ];
