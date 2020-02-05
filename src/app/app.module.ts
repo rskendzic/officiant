@@ -27,11 +27,11 @@ import * as fromGuards from './guards'
 
 
 import { environment } from '../environments/environment'; // Angular CLI environemnt
-import { storeFreeze } from 'ngrx-store-freeze';
+
 import { RegisterComponent } from './containers/register/register.component';
 
 export const metaReducers: MetaReducer<any>[] = !environment.production
-  ? [storeFreeze]
+  ? []
   : [];
 
 
@@ -62,7 +62,7 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
       stateKey: 'router', // name of reducer key
     }),
 
-    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreModule.forRoot(reducers, { metaReducers, runtimeChecks: { strictStateImmutability: true, strictActionImmutability: true } }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode

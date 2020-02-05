@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import * as drinkActions from '../store/actions/drink.actions';
 import * as fromStore from '../store';
 
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreateUpdateDialogComponent } from '../components';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { map, tap, } from 'rxjs/operators';
 import * as fromAuthAction from '../actions/auth.actions';
 import * as fromMenuAction from '../../menu/store/actions';

@@ -1,6 +1,6 @@
 import { FormBuilder, Validators } from '@angular/forms';
 import { MenuItem } from '../../models/MenuItem';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inject, Component, OnInit } from '@angular/core';
 
 interface DrinkCategory { name: string, value: string }
