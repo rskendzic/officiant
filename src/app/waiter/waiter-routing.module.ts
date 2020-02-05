@@ -1,5 +1,5 @@
 import * as fromGuards from './guard/waiter.guard';
-import * as fromContainers from './containers/';
+import * as fromContainers from './containers';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 

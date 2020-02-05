@@ -1,12 +1,15 @@
 <mat-toolbar color="primary" fxLayout="column" fxLayoutAlign="space-between start">
 	<div fxLayout="row" fxLayoutAlign="space-between center" class="toolbar-title__wrapper">
 			<div class="toolbar-title">Oficiant</div>
-			<button
-			i18n="logout button|@@logOutButton"
-			mat-button
-			(click)="logOut()">
-				Log out
-			</button>
+			<div>
+				<button mat-button><mat-icon>menu</mat-icon></button>
+				<button
+				i18n="logout button|@@logOutButton"
+				mat-button
+				(click)="logOut()">
+					Log out
+				</button>
+			</div>
 	</div>
   <mat-progress-bar color="accent" mode="indeterminate" *ngIf="drinksAreLoading$ | async">
 	</mat-progress-bar>

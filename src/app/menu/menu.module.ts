@@ -1,3 +1,4 @@
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MenuRoutingModule } from './menu-routing.module';
 import { EffectsModule } from '@ngrx/effects';
