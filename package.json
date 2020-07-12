@@ -19,6 +19,7 @@
     "@angular/common": "^10.0.3",
     "@angular/compiler": "^10.0.3",
     "@angular/core": "^10.0.3",
+    "@angular/fire": "^6.0.2",
     "@angular/flex-layout": "^10.0.0-beta.32",
     "@angular/forms": "^10.0.3",
     "@angular/localize": "~10.0.3",
@@ -32,11 +33,10 @@
     "@ngrx/router-store": "^9.2.0",
     "@ngrx/store": "^9.2.0",
     "@ngrx/store-devtools": "^9.2.0",
-    "angularfire2": "^5.4.1",
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "dotenv": "^8.2.0",
-    "firebase": "^7.8.0",
+    "firebase": "^7.16.0",
     "fs": "0.0.1-security",
     "path": "^0.12.7",
     "qs": "^6.9.1",
@@ -68,6 +68,12 @@
     "ts-jest": "^26.1.1",
     "ts-node": "~8.10.2",
     "tslint": "~6.1.0",
-    "typescript": "^3.9.6"
+    "typescript": "^3.9.6",
+    "@angular-devkit/architect": "<0.900 || ^0.900.0-0 || ^9.0.0-0",
+    "firebase-tools": "^7.12.0",
+    "fuzzy": "^0.1.3",
+    "inquirer": "^6.2.2",
+    "inquirer-autocomplete-prompt": "^1.0.1",
+    "open": "^7.0.3"
   }
 }
