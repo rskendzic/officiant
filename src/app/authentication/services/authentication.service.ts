@@ -12,7 +12,7 @@ export class AuthenticationService {
 	constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore) {}
 
 	logOut() {
-		return of(this.afAuth.signOut());
+		return of(this.afAuth.signOut);
 	}
 
 	signIn({ email, password }) {
