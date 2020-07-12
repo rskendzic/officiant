@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFirestore } from 'angularfire2/firestore';
+import {AngularFireAuth} from 'angularfire2/auth';
+import {AngularFirestore} from 'angularfire2/firestore';
 import * as firebase from 'firebase';
-import { from, of } from 'rxjs';
-import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
-import { BrowserLocalStorage, WolkREST } from 'wolk-rest';
+import {from, of} from 'rxjs';
+import {map, switchMap} from 'rxjs/operators';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class AuthenticationService {
-	API: WolkREST = new WolkREST(`https://api-demo.wolkabout.com/`, new BrowserLocalStorage());
 
 	constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore) {
 	}
