@@ -16,7 +16,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { MaterialModule } from './material.module';
 
 import { EffectsModule } from '@ngrx/effects';
-import { StoreRouterConnectingModule, routerReducer, RouterStateSerializer } from '@ngrx/router-store';
+import { StoreRouterConnectingModule, routerReducer, RouterStateSerializer, DefaultRouterStateSerializer } from '@ngrx/router-store';
 import { StoreModule, MetaReducer } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers, effects, CustomSerializer } from './store';
@@ -58,7 +58,7 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
     ReactiveFormsModule,
 
     // Connects RouterModule with StoreModule
-    StoreRouterConnectingModule.forRoot({
+    StoreRouterConnectingModule.forRoot({ serializer: DefaultRouterStateSerializer,
       stateKey: 'router', // name of reducer key
     }),
 
