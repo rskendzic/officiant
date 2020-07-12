@@ -1,25 +1,26 @@
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MenuItem } from '../../models/MenuItem';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Inject, Component, OnInit } from '@angular/core';
 
-interface DrinkCategory { name: string, value: string }
+import { MenuItem } from '../../models/MenuItem';
+
+interface DrinkCategory { name: string; value: string; }
 
 @Component({
-  selector: 'app-create-update-dialog',
-  templateUrl: 'create-update-dialog.component.html',
+	selector: 'app-create-update-dialog',
+	templateUrl: 'create-update-dialog.component.html',
 })
 export class CreateUpdateDialogComponent implements OnInit {
 
-  drinksForm = this.fb.group({
-    name: ['', Validators.required],
-    category: ['', Validators.required],
-    price: ['', Validators.required],
-    key: [null],
-    id: [null],
+	drinksForm = this.fb.group({
+		name: ['', Validators.required],
+		category: ['', Validators.required],
+		price: ['', Validators.required],
+		key: [null],
+		id: [null],
 	});
 
-	private DRINK_CATEGORIES: DrinkCategory[]= [
+	DRINK_CATEGORIES: DrinkCategory[] = [
 		{
 			name: 'Beer',
 			value: 'BEER'
@@ -40,34 +41,34 @@ export class CreateUpdateDialogComponent implements OnInit {
 			name: 'Wine',
 			value: 'WINE'
 		}
-	]
+	];
 
-  title =  'CREATE_DRINK';
-  buttonText =  'Create';
+	title =  'CREATE_DRINK';
+	buttonText =  'Create';
 
-  constructor(
-    public dialogRef: MatDialogRef<CreateUpdateDialogComponent>,
-    private fb: FormBuilder,
+	constructor(
+		public dialogRef: MatDialogRef<CreateUpdateDialogComponent>,
+		private fb: FormBuilder,
 		@Inject(MAT_DIALOG_DATA) public editDrinkData: MenuItem) { }
 
-  onNoClick(): void {
-    this.dialogRef.close(null);
-  }
+	onNoClick(): void {
+		this.dialogRef.close(null);
+	}
 
-  close(): void {
-    this.dialogRef.close(null);
-  }
+	close(): void {
+		this.dialogRef.close(null);
+	}
 
 	saveDrink(drink: MenuItem): void {
-    this.dialogRef.close(drink);
-  }
+		this.dialogRef.close(drink);
+	}
 
-  ngOnInit() {
-    if (this.editDrinkData) {
+	ngOnInit() {
+		if (this.editDrinkData) {
 			this.title = 'EDIT_DRINK';
-      this.buttonText = 'Update';
-      this.drinksForm.setValue(this.editDrinkData);
-    }
+			this.buttonText = 'Update';
+			this.drinksForm.setValue(this.editDrinkData);
+		}
 	}
 
 	compareFn(compared: DrinkCategory, comperer: DrinkCategory): boolean {

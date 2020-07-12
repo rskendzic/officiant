@@ -1,13 +1,14 @@
-import { AuthenticationService } from "../authentication/services/authentication.service";
-import * as fromStore from "../store";
-import { Store } from "@ngrx/store";
-import { Injectable } from "@angular/core";
-import { Router, CanActivate } from "@angular/router";
-import { Observable, from, of } from "rxjs";
-import { tap, mergeMap, map, catchError, switchMap } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { CanActivate, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { from, Observable, of } from 'rxjs';
+import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
+
+import { AuthenticationService } from '../authentication/services/authentication.service';
+import * as fromStore from '../store';
 
 @Injectable({
-	providedIn: "root"
+	providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
 	constructor(
@@ -16,7 +17,7 @@ export class AuthGuard implements CanActivate {
 		private authService: AuthenticationService
 	) {}
 
-	ALLOWED_ROLES = ["ADMIN"];
+	ALLOWED_ROLES = ['ADMIN'];
 
 	canActivate(): Observable<boolean> {
 		return this.isAuthenticated();
@@ -25,13 +26,13 @@ export class AuthGuard implements CanActivate {
 	isAuthenticated() {
 		return this.store.select(fromStore.getUserRole).pipe(
 			mergeMap(userRole => {
-				if (this.ALLOWED_ROLES.includes(userRole)) return of(true);
+				if (this.ALLOWED_ROLES.includes(userRole)) { return of(true); }
 				return this.checkApiAuthentication();
 			}),
 			map(storeOrApiAuth => {
-				if (storeOrApiAuth) return true;
+				if (storeOrApiAuth) { return true; }
 
-				this.router.navigate(["/waiter"]);
+				this.router.navigate(['/waiter']);
 				return false;
 			})
 		);
@@ -39,10 +40,10 @@ export class AuthGuard implements CanActivate {
 
 	checkApiAuthentication() {
 		return this.store.select(fromStore.getToken).pipe(
-			switchMap(token => this.authService.checkUserRole(token, "ADMIN")),
+			switchMap(token => this.authService.checkUserRole(token, 'ADMIN')),
 			map(user => !!user),
 			catchError(() => {
-				this.router.navigate(["/waiter"]);
+				this.router.navigate(['/waiter']);
 				return of(false);
 			})
 		);

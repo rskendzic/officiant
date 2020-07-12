@@ -1,11 +1,12 @@
-import * as fromGuards from './guard/waiter.guard';
-import * as fromContainers from './containers';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
+import * as fromContainers from './containers';
+import * as fromGuards from './guard/waiter.guard';
 
+//canActivate: [fromGuards.WaiterGuard]
 const routes: Routes = [
-	{ path: '', canActivate: [fromGuards.WaiterGuard],
+	{ path: '',
 	pathMatch: 'full',
 	component: fromContainers.WaiterComponent },
 ];

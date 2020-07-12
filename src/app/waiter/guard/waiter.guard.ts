@@ -1,10 +1,11 @@
-import { AuthenticationService } from '../../authentication/services/authentication.service';
-import * as fromAppStore from '../../store'
-import { Store } from '@ngrx/store';
 import { Injectable } from '@angular/core';
-import { Router, CanActivate } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { mergeMap, map, catchError, switchMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
+
+import { AuthenticationService } from '../../authentication/services/authentication.service';
+import * as fromAppStore from '../../store';
 
 @Injectable({
 	providedIn: 'root'
@@ -27,17 +28,17 @@ export class WaiterGuard implements CanActivate {
 		return this.store.select(fromAppStore.getUserRole)
 			.pipe(
 				mergeMap(userRole => {
-				if (this.ALLOWED_ROLES.includes(userRole)) return of(true)
-					return this.checkApiAuthentication()
+				if (this.ALLOWED_ROLES.includes(userRole)) { return of(true); }
+					return this.checkApiAuthentication();
 				}),
 			map(storeOrApiAuth => {
 
-				if (storeOrApiAuth) return true;
+				if (storeOrApiAuth) { return true; }
 
-				this.router.navigate(['/login'])
+				this.router.navigate(['/login']);
 				return false;
 			})
-			)
+			);
 	}
 
 	checkApiAuthentication() {
@@ -45,10 +46,10 @@ export class WaiterGuard implements CanActivate {
 		.pipe(
 			switchMap(token => this.authService.checkUserRole(token, 'WAITER')),
 			catchError(() => {
-				this.router.navigate(['/menu'])
-				return of(false)
+				this.router.navigate(['/menu']);
+				return of(false);
 			})
-		)
+		);
 	}
 
 }
