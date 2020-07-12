@@ -4,13 +4,25 @@
 	"newProjectRoot": "projects",
 	"projects": {
 		"officiant": {
+      "i18n": {
+        "locales": {
+          "sr-Latn": {
+            "translation": "src/locale/messages.sr-Latn.xlf",
+            "baseHref": ""
+          },
+          "sr-Cyrl": {
+            "translation": "src/locale/messages.sr-Cyrl.xlf",
+            "baseHref": ""
+          }
+        }
+      },
 			"root": "",
 			"sourceRoot": "src",
 			"projectType": "application",
 			"prefix": "app",
 			"schematics": {
 				"@schematics/angular:component": {
-					"styleext": "scss"
+					"style": "scss"
 				},
 				"@ngrx/schematics:component": {
 					"styleext": "scss"
@@ -20,6 +32,7 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
 					"options": {
+            "aot": true,
 						"outputPath": "dist/officiant",
 						"index": "src/index.html",
 						"main": "src/main.ts",
@@ -37,19 +50,35 @@
 					"configurations": {
 						"sr-Latn": {
 							"aot": true,
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
 							"outputPath": "dist/oficiant-sr-lat/",
 							"i18nFile": "src/locale/messages.sr-Latn.xlf",
-							"i18nFormat": "xlf",
 							"i18nLocale": "sr-Latn"
 						},
 						"sr-Cyrl": {
 							"aot": true,
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
 							"outputPath": "dist/oficiant-sr-cyr/",
 							"i18nFile": "src/locale/messages.sr-Cyrl.xlf",
-							"i18nFormat": "xlf",
 							"i18nLocale": "sr-Cyrl"
 						},
 						"hmr": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
 							"fileReplacements": [
 								{
 									"replace": "src/environments/environment.ts",
@@ -58,6 +87,12 @@
 							]
 						},
 						"production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
 							"fileReplacements": [
 								{
 									"replace": "src/environments/environment.ts",

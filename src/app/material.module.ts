@@ -35,13 +35,13 @@ import { NgModule, ModuleWithProviders } from "@angular/core";
 	exports: [...IMPORTS]
 })
 export class MaterialModule {
-	static forRoot(): ModuleWithProviders {
+	static forRoot(): ModuleWithProviders<MaterialModule> {
 		return {
 			ngModule: MaterialModule,
 			providers: []
 		};
 	}
-	static forChild(): ModuleWithProviders {
+	static forChild(): ModuleWithProviders<MaterialModule> {
 		return {
 			ngModule: MaterialModule,
 			providers: []

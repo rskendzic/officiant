@@ -10,6 +10,7 @@ import * as fromRouter from '@ngrx/router-store';
 import * as fromAuth from './auth.reducer';
 import * as fromNotification from './notification.reducer';
 import * as fromSidebar from './sidebar.reducer';
+import { Injectable } from "@angular/core";
 
 export interface RouterStateUrl {
   url: string;
@@ -39,6 +40,7 @@ export const getRouterState = createFeatureSelector<
   fromRouter.RouterReducerState<RouterStateUrl>
   >('routerReducer');
 
+@Injectable()
 export class CustomSerializer
   implements fromRouter.RouterStateSerializer<RouterStateUrl> {
   serialize(routerState: RouterStateSnapshot): RouterStateUrl {
