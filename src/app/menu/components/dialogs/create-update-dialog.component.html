@@ -1,52 +1,50 @@
-<h2 i18n="@@dialogTitle" mat-dialog-title>{title, drink, CREATE_DRINK {Create drink} EDIT_DRINK{Edit drink}}</h2>
+<h2 i18n="@@dialogTitle" mat-dialog-title>{title, select, CREATE_DRINK {Create drink} EDIT_DRINK{Edit drink}}</h2>
 <mat-dialog-content [formGroup]="drinksForm">
-        <mat-form-field fxFlexFill>
-          <input
-            matInput
-            i18n-placeholder="name placeholder|@@namePlaceholder"
-            placeholder="Name"
-            type="text"
-            formControlName="name"
-            />
-            <mat-error
-            i18n="category error message|@@categoryError"
-            *ngIf="drinksForm.get('name').invalid">Name is required</mat-error>
-				</mat-form-field>
-				<mat-form-field fxFlexFill>
-					<mat-select
-						[compareWith]="compareFn"
-						 i18n-placeholder="category placeholder|@@categoryPlaceholder"
-						 placeholder="Category"
-						 type="text"
-						 formControlName="category">
-						<mat-option *ngFor="let category of DRINK_CATEGORIES" [value]="category">
-							{{category.name}}
-						</mat-option>
-						</mat-select>
-						<mat-error
-						i18n="category error message|@@categoryError"
-						*ngIf="drinksForm.get('category').invalid">Category is required</mat-error>
-				</mat-form-field>
-        <mat-form-field fxFlexFill>
-          <input
-            i18n-placeholder="price placeholder|@@pricePlaceholder"
-            matInput placeholder="Price"
-            type="number"
-            formControlName="price"
-          />
-            <mat-error
-             i18n="price error message|@@priceError"
-            *ngIf="drinksForm.get('price').invalid">Price is required</mat-error>
-        </mat-form-field>
+	<mat-form-field fxFlexFill>
+		<input
+			matInput
+			i18n-placeholder="name placeholder|@@namePlaceholder"
+			placeholder="Name"
+			type="text"
+			formControlName="name"
+		/>
+		<mat-error i18n="category error message|@@categoryError" *ngIf="drinksForm.get('name').invalid"
+			>Name is required</mat-error
+		>
+	</mat-form-field>
+	<mat-form-field fxFlexFill>
+		<mat-select
+			[compareWith]="compareFn"
+			i18n-placeholder="category placeholder|@@categoryPlaceholder"
+			placeholder="Category"
+			type="text"
+			formControlName="category"
+		>
+			<mat-option *ngFor="let category of DRINK_CATEGORIES" [value]="category">
+				{{ category.name }}
+			</mat-option>
+		</mat-select>
+		<mat-error i18n="category error message|@@categoryError" *ngIf="drinksForm.get('category').invalid"
+			>Category is required</mat-error
+		>
+	</mat-form-field>
+	<mat-form-field fxFlexFill>
+		<input
+			i18n-placeholder="price placeholder|@@pricePlaceholder"
+			matInput
+			placeholder="Price"
+			type="number"
+			formControlName="price"
+		/>
+		<mat-error i18n="price error message|@@priceError" *ngIf="drinksForm.get('price').invalid"
+			>Price is required</mat-error
+		>
+	</mat-form-field>
 </mat-dialog-content>
 
 <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
-    <button i18n="@@closeButton" class="mat-raised-button" (click)="close()">Close</button>
-    <button
-      mat-raised-button
-      (click)="saveDrink(drinksForm.value)"
-      color="primary"
-      [disabled]="drinksForm.invalid">
-      <span i18n="@@dialogButton">{buttonText, text, Update {Update} Create {Create} }</span>
-    </button>
+	<button i18n="@@closeButton" class="mat-raised-button" (click)="close()">Close</button>
+	<button mat-raised-button (click)="saveDrink(drinksForm.value)" color="primary" [disabled]="drinksForm.invalid">
+		<span i18n="@@dialogButton">{buttonText, select, Update {Update} Create {Create} }</span>
+	</button>
 </mat-dialog-actions>
