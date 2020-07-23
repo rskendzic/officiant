@@ -20,20 +20,6 @@
 	max-width: 400px;
 }
 
-.drawer-container {
-	.drawer {
-		max-width: 400px;
-	}
-	height: 100%;
-}
-
-.main-wrapper {
-	height: 100%;
-	width: 100%;
-	background-color: #303030;
-	overflow: auto;
-}
-
 @media screen and (min-device-width: 600px) {
 	.drink-card__wrapper {
 		width: 400px;

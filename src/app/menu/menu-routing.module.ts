@@ -6,7 +6,13 @@ import * as fromGuards from '../guards';
 import { MenuComponent } from './containers/menu.component';
 
 // canActivate: [fromGuards.AuthGuard]
-const routes: Routes = [{ path: '', pathMatch: 'full', component: MenuComponent }];
+const routes: Routes = [
+	{ path: '', component: MenuComponent },
+	{
+		path: '**',
+		redirectTo: '',
+	},
+];
 
 @NgModule({
 	imports: [RouterModule.forChild(routes)],

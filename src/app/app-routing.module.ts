@@ -7,23 +7,17 @@ const routes: Routes = [
 	{
 		path: 'login',
 		pathMatch: 'full',
-		canActivate: [],
-		component: fromContainers.LoginComponent
+		component: fromContainers.LoginComponent,
 	},
 	{
-		path: 'menu',
-		loadChildren: () => import('./menu/menu.module').then(m => m.MenuModule),
+		path: '',
+		loadChildren: () => import('./containers/shell/shell.module').then((m) => m.ShellModule),
 	},
-	{
-		path: 'waiter',
-		loadChildren: () => import('./waiter/waiter.module').then(m => m.WaiterModule),
-	},
-	{ path: '', pathMatch: 'full', redirectTo: 'menu' },
-	{ path: '**', redirectTo: 'menu'},
+	{ path: '**', redirectTo: '' },
 ];
 
 @NgModule({
 	imports: [RouterModule.forRoot(routes)],
-	exports: [RouterModule]
+	exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

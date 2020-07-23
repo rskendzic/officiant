@@ -21,7 +21,6 @@ export class MenuComponent implements OnInit {
 	drinks$: Observable<MenuItem[]>;
 	drinksAreLoading$: Observable<boolean>;
 	firebaseUpdated$: Observable<any>;
-	isSidebarOpened$: Observable<boolean>;
 
 	constructor(private store: Store<fromStore.MenuState>, private dialog: MatDialog) {
 		this.drinks$ = this.store.select(fromStore.getAllDrinks);
@@ -63,6 +62,5 @@ export class MenuComponent implements OnInit {
 
 	ngOnInit() {
 		this.getDrinks();
-		this.isSidebarOpened$ = this.store.pipe(select(isSidebarOpen), tap(console.log));
 	}
 }
