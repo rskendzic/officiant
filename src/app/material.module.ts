@@ -12,6 +12,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
 
 const IMPORTS = [
 	MatButtonModule,
@@ -26,25 +27,25 @@ const IMPORTS = [
 	MatIconModule,
 	MatSnackBarModule,
 	MatSelectModule,
-	MatSidenavModule
+	MatSidenavModule,
+	MatListModule,
 ];
-
 
 @NgModule({
 	imports: [...IMPORTS],
-	exports: [...IMPORTS]
+	exports: [...IMPORTS],
 })
 export class MaterialModule {
 	static forRoot(): ModuleWithProviders<MaterialModule> {
 		return {
 			ngModule: MaterialModule,
-			providers: []
+			providers: [],
 		};
 	}
 	static forChild(): ModuleWithProviders<MaterialModule> {
 		return {
 			ngModule: MaterialModule,
-			providers: []
+			providers: [],
 		};
 	}
 }

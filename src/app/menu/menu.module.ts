@@ -8,7 +8,6 @@ import { StoreModule } from '@ngrx/store';
 import { MaterialModule } from '../material.module';
 
 import * as fromComponents from './components';
-import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { MenuComponent } from './containers/menu.component';
 import { MenuRoutingModule } from './menu-routing.module';
 import * as fromServices from './service';

@@ -4,14 +4,16 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { MenuItem } from '../../models/MenuItem';
 
-interface DrinkCategory { name: string; value: string; }
+interface DrinkCategory {
+	name: string;
+	value: string;
+}
 
 @Component({
 	selector: 'app-create-update-dialog',
 	templateUrl: 'create-update-dialog.component.html',
 })
 export class CreateUpdateDialogComponent implements OnInit {
-
 	drinksForm = this.fb.group({
 		name: ['', Validators.required],
 		category: ['', Validators.required],
@@ -23,33 +25,34 @@ export class CreateUpdateDialogComponent implements OnInit {
 	DRINK_CATEGORIES: DrinkCategory[] = [
 		{
 			name: 'Beer',
-			value: 'BEER'
+			value: 'BEER',
 		},
 		{
 			name: 'Coffee',
-			value: 'COFFEE'
+			value: 'COFFEE',
 		},
 		{
 			name: 'Juice',
-			value: 'JUICE'
+			value: 'JUICE',
 		},
 		{
 			name: 'Water',
-			value: 'WATER'
+			value: 'WATER',
 		},
 		{
 			name: 'Wine',
-			value: 'WINE'
-		}
+			value: 'WINE',
+		},
 	];
 
-	title =  'CREATE_DRINK';
-	buttonText =  'Create';
+	title = 'CREATE_DRINK';
+	buttonText = 'Create';
 
 	constructor(
 		public dialogRef: MatDialogRef<CreateUpdateDialogComponent>,
 		private fb: FormBuilder,
-		@Inject(MAT_DIALOG_DATA) public editDrinkData: MenuItem) { }
+		@Inject(MAT_DIALOG_DATA) public editDrinkData: MenuItem
+	) {}
 
 	onNoClick(): void {
 		this.dialogRef.close(null);
@@ -65,14 +68,13 @@ export class CreateUpdateDialogComponent implements OnInit {
 
 	ngOnInit() {
 		if (this.editDrinkData) {
-			this.title = 'EDIT_DRINK';
+			this.title = 'EDIT_comparer';
 			this.buttonText = 'Update';
 			this.drinksForm.setValue(this.editDrinkData);
 		}
 	}
 
-	compareFn(compared: DrinkCategory, comperer: DrinkCategory): boolean {
-		return compared && comperer ? compared.value === comperer.value : compared === comperer;
+	compareFn(compared: DrinkCategory, comparer: DrinkCategory): boolean {
+		return compared && comparer ? compared.value === comparer.value : compared === comparer;
 	}
-
 }

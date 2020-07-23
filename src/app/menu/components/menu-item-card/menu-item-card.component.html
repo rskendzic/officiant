@@ -1,22 +1,24 @@
 <mat-card class="drink-card__wrapper">
-  <mat-card-title>{{ drink.name}}</mat-card-title>
-  <mat-card-subtitle>{{ drink.category.name}}</mat-card-subtitle>
-  <mat-card-content>{{ drink.price}}</mat-card-content>
-  <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
-    <span fxFlexFill></span>
-    <button
-    i18n="update button|Every update button should have this translation@@updateButton"
-    mat-raised-button
-    color="primary"
-    (click)="updateDrink()">
-      Update
-    </button>
-    <button
-    i18n="delete button|Every delete button should have this translation@@deleteButton"
-    mat-raised-button
-    color="warn"
-    (click)="deleteDrink()">
-      Delete
-    </button>
-  </mat-card-actions>
+	<mat-card-title>{{ drink.name }}</mat-card-title>
+	<mat-card-subtitle>{{ drink.category.name }}</mat-card-subtitle>
+	<mat-card-content>{{ drink.price }}</mat-card-content>
+	<mat-card-actions fxLayout="row" fxLayoutAlign="end center">
+		<span fxFlexFill></span>
+		<button
+			i18n="update button|Every update button should have this translation@@updateButton"
+			mat-raised-button
+			color="primary"
+			(click)="updateDrink()"
+		>
+			Update
+		</button>
+		<button
+			i18n="delete button|Every delete button should have this translation@@deleteButton"
+			mat-raised-button
+			color="warn"
+			(click)="deleteDrink()"
+		>
+			Delete
+		</button>
+	</mat-card-actions>
 </mat-card>
