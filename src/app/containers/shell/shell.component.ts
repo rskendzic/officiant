@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
 import * as fromStore from '../../menu/store';
 import { isSidebarOpen } from '../../store/selectors';
 

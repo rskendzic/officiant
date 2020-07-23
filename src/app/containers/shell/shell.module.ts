@@ -6,6 +6,7 @@ import { MaterialModule } from '../../material.module';
 
 import { HeaderComponent } from './components/header/header.component';
 import { ShellComponent } from './shell.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 const routes = [
 	{
@@ -30,7 +31,7 @@ const routes = [
 
 @NgModule({
 	declarations: [ShellComponent, HeaderComponent],
-	imports: [CommonModule, RouterModule.forChild(routes), MaterialModule.forChild()],
+	imports: [CommonModule, RouterModule.forChild(routes), MaterialModule.forChild(), FlexLayoutModule],
 	exports: [],
 })
 export class ShellModule {}
