@@ -19,7 +19,6 @@ import { reducers } from './store/reducers';
 		CommonModule,
 		ReactiveFormsModule,
 		MenuRoutingModule,
-		FlexLayoutModule,
 		MaterialModule.forChild(),
 		StoreModule.forFeature('menu', reducers),
 		EffectsModule.forFeature(effects),

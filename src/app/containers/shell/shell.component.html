@@ -1,11 +1,12 @@
 <div fxLayout="column" fxLayoutAlign="start start" class="main-wrapper">
-	<app-header></app-header>
+	<app-header class="full-width"></app-header>
 	<mat-drawer-container class="drawer-container">
 		<mat-drawer #drawer class="drawer" mode="side" [opened]="isSidebarOpened$ | async">
 			<mat-nav-list fxLayout="column" fxLayoutGap="10px">
 				<a mat-list-item [routerLink]="['/waiter']">Waiter</a>
 				<a mat-list-item [routerLink]="['/bartender']">Bartender</a>
 				<a mat-list-item [routerLink]="['/menu']">Menu</a>
+				<a mat-list-item [routerLink]="['/admin']">Users</a>
 			</mat-nav-list>
 		</mat-drawer>
 		<mat-drawer-content>

@@ -6,13 +6,16 @@ import { MaterialModule } from '../../material.module';
 
 import { HeaderComponent } from './components/header/header.component';
 import { ShellComponent } from './shell.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 const routes = [
 	{
 		path: '',
 		component: ShellComponent,
 		children: [
+			{
+				path: 'admin',
+				loadChildren: () => import('../../user-admin/user-admin.module').then((m) => m.UserAdminModule),
+			},
 			{
 				path: 'menu',
 				loadChildren: () => import('../../menu/menu.module').then((m) => m.MenuModule),
@@ -31,7 +34,7 @@ const routes = [
 
 @NgModule({
 	declarations: [ShellComponent, HeaderComponent],
-	imports: [CommonModule, RouterModule.forChild(routes), MaterialModule.forChild(), FlexLayoutModule],
+	imports: [CommonModule, RouterModule.forChild(routes), MaterialModule.forChild()],
 	exports: [],
 })
 export class ShellModule {}

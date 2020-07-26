@@ -38,8 +38,6 @@ export const metaReducers: MetaReducer<any>[] = !environment.production ? [] : [
 		AngularFireAuthModule,
 
 		EffectsModule.forRoot(effects),
-		FlexLayoutModule,
-
 		ReactiveFormsModule,
 
 		// Connects RouterModule with StoreModule

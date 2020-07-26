@@ -35,13 +35,8 @@ export class AuthenticationService {
 				const { uid } = user;
 				return from(this.afs.doc(`users/${uid}`).set({ ...userData, uid }));
 			}),
-			switchMap(() => {
-				return from(this.afAuth.currentUser).pipe(
-					switchMap(({ uid }) => {
-						return from(this.afs.doc(`users/${uid}`).ref.get());
-					})
-				);
-			}),
+			switchMap(() => from(this.afAuth.currentUser)),
+			switchMap(({ uid }) => from(this.afs.doc(`users/${uid}`).ref.get())),
 			map((snapshot) => snapshot.data())
 		);
 	}
