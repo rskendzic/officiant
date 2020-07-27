@@ -31,12 +31,10 @@ export class AuthenticationService {
 
 	createUser(userData) {
 		return this.signUp(userData).pipe(
-			map(({ user }: firebase.auth.UserCredential) => {
+			switchMap(({ user }: firebase.auth.UserCredential) => {
 				const { uid } = user;
-				return from(this.afs.doc(`users/${uid}`).set({ ...userData, uid }));
+				return from(this.afs.doc(`users/${uid}`).ref.get());
 			}),
-			switchMap(() => from(this.afAuth.currentUser)),
-			switchMap(({ uid }) => from(this.afs.doc(`users/${uid}`).ref.get())),
 			map((snapshot) => snapshot.data())
 		);
 	}
