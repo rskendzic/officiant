@@ -3,8 +3,9 @@ import * as admin from 'firebase-admin';
 admin.initializeApp();
 
 export const removeFireAuthUser = functions.database.ref('/users/{uid}').onDelete(async (snapshot, context) => {
+	console.log({ context });
 	const userId = context.params.uid;
-	console.log({ userId });
+	return admin.auth().deleteUser(userId);
 });
 
 export const addDatabaseUser = functions.auth.user().onCreate((user) => {
